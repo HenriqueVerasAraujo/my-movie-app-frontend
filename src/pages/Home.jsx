@@ -4,7 +4,6 @@ import {defaultSearchMovie, newSearchMovie } from '../links/movieFilter';
 
 export default function Home() {
 	const [movieData, setMovieData] = useState([]);
-	const [inputField, setInputField] = useState('');
 	const [render, setRender] = useState(false);
 
 	const fetchData = async(link) => {
@@ -19,15 +18,16 @@ export default function Home() {
 		setRender(true);
 	}, []);
 
-	const formatInputReturn = async() => {
-		const newValue = inputField.split(' ').join('+');
-		await setInputField(newValue);
-	}
+	// const formatInputReturn = async() => {
+	// 	const newValue = inputField.split(' ').join('+');
+	// 	await setInputField(newValue);
+	// }
 
-	const searchNewMovie = async () => {
-		const newMovieList = `${newSearchMovie}${inputField}`
-		await fetchData(newMovieList)
-	}
+	// const searchNewMovie = async () => {
+	// 	const newMovieList = `${newSearchMovie}${inputField}`
+	// 	await fetchData(newMovieList)
+	// }
+
 	const searchButton = async() => {
 		if (inputField.length !== 0) {
 			setRender(false);
