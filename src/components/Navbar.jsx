@@ -15,6 +15,10 @@ export default function Navbar() {
 		setMovieData(allDataJson.results);
 	};
 
+	const inputFunction = ({ target }) => {
+		setInputField(target.value);
+	};
+
   const formatInputReturn = async() => {
 		const newValue = inputField.split(' ').join('+');
 		await setInputField(newValue);
@@ -41,7 +45,7 @@ export default function Navbar() {
         </div>
 
         <div className='w-[50%] flex'>
-          <input className='w-full h-[40px] rounded-l-3xl pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
+          <input onChange={inputFunction} className='w-full h-[40px] rounded-l-3xl pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
           <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>
         </div>
 
