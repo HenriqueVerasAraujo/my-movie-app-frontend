@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 
 export default function provider({ children }) {
  // eslint-disable-next-line react-hooks/rules-of-hooks
- const [test, setTest] = useState('initial Value');
+ const [movieData, setMovieData] = useState('teste');
 
 const contextValue = {
-  test,
-  setTest,
+  movieData,
+  setMovieData,
 };
 
   return (
