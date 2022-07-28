@@ -17,13 +17,21 @@ export default function SearchPage() {
     }, [])
 
   return (
-      <div>
-          {render && (
-              movieData.map((s) => (
-            <div key={s.id}>
-                <SingleMovieSearch movie={s}/>
-            </div>
-          )))}
+      <div className='w-full h-screen bg-slate-200'>
+          <div className='w-[30%] h-screen fixed top-[75px] bg-slate-900 z-10'></div>
+          <div className='w-full h-auto bg-slate-200 flex justify-end absolute top-[75px] z-0'>
+              <div className='w-[70%] h-auto flex justify-center'>
+                <div className='w-[80%] flex flex-col mt-[50px]'>
+                    {render && (
+                        movieData.map((s) => (
+                            <div key={s.id} className='mb-[50px]'>
+                                <SingleMovieSearch movie={s} />
+                            </div>
+                        ))
+                    )}
+                </div>
+              </div>
+          </div>
       </div>
   )
 }

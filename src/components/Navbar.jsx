@@ -13,7 +13,7 @@ export default function Navbar() {
   const fetchData = async(link) => {
 		const allData = await fetch(link);
 		const allDataJson = await allData.json();
-		console.log(allDataJson.results);
+		console.log(allDataJson);
 		setMovieData(allDataJson.results);
 	};
 
@@ -40,7 +40,7 @@ export default function Navbar() {
 	};
 
   return (
-    <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800'>
+    <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-10'>
       <div className='w-[95%] h-full flex items-center'>
 
         <div className='flex items-center w-[20%] h-full'>
@@ -56,7 +56,6 @@ export default function Navbar() {
           <h1 className='text-2xl font-bold text-amber-50'>Login</h1>
           <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
         </div>
-
       </div>
     </div>
   )
