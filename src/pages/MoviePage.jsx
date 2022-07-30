@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { movieById, movieCastById } from '../links/movieFilter';
 import GenreButton from '../components/GenreButton';
 import ScoreTag from '../components/ScoreTag';
+import BudgetTag from '../components/BudgetTag';
 
 
 export default function MoviePage() {
@@ -60,8 +61,9 @@ export default function MoviePage() {
                                     </div>
                                 ))}
                             </div>
-                            <div>
+                            <div className='mt-2 flex'>
                                 <ScoreTag score={movieData[0].vote_average}/>
+                                <BudgetTag cost={movieData[0].budget} back={movieData[0].revenue}/>
                             </div>
 
                         </div>
