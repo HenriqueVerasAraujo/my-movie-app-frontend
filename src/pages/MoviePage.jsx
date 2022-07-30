@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { movieById, movieCastById } from '../links/movieFilter';
 import GenreButton from '../components/GenreButton';
+import ScoreTag from '../components/ScoreTag';
+
 
 export default function MoviePage() {
     const [movieData, setMovieData] = useState('');
@@ -40,10 +42,17 @@ export default function MoviePage() {
                     <div className='w-[70%] h-full absolute z-10 flex items-center '>
                         <img className='h-[80%] rounded-lg' src={`https://image.tmdb.org/t/p/original/${movieData[0].poster_path}`} alt="Movie poster not found" />
                         <div className='w-full h-[80%] flex flex-col  ml-7'>
+
                             <div className='flex items-center '>
                                 <h1 className='text-white font-bold text-3xl'>{movieData[0].title}</h1>
-                                <h1 className='text-neutral-200 text-2xl ml-2'>{`(${date})`}</h1>
+                                <h1 className='text-neutral-200 text-2xl ml-2 mt-1'>{`(${date})`}</h1>
                             </div>
+
+                            <div className='flex ml-2 text-white'>
+                                    <h1 className='mr-3'>{`${movieData[0].release_date} (US)`}</h1>
+                                    <h1 className=''>{`Running time: ${movieData[0].runtime} minutes`}</h1>
+                            </div>
+
                             <div className='flex mt-2 '>
                                 {genres.map((singleGenre) => (
                                     <div key={singleGenre.name}>
@@ -51,6 +60,10 @@ export default function MoviePage() {
                                     </div>
                                 ))}
                             </div>
+                            <div>
+                                <ScoreTag score={movieData[0].vote_average}/>
+                            </div>
+
                         </div>
                     </div>
                     <div className='w-full h-full opacity-50 absolute bg-sky-800'></div>
