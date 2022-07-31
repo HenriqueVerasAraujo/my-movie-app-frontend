@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { movieById, movieCastById } from '../links/movieFilter';
-import GenreButton from '../components/GenreButton';
-import ScoreTag from '../components/ScoreTag';
-import BudgetTag from '../components/BudgetTag';
+import GenreButton from '../components/heroMovie/GenreButton';
+import ScoreTag from '../components/heroMovie/ScoreTag';
+import BudgetTag from '../components/heroMovie/BudgetTag';
+import BackGroundCast from '../components/heroMovie/BackGroundCast';
 
 
 export default function MoviePage() {
     const [movieData, setMovieData] = useState('');
+    const [director, setDirector] = useState([]);
     const [date, setDate] = useState('');
     const [genres, setGenres] =useState(['']);
     const [render, setRender] = useState(false);
@@ -22,6 +24,13 @@ export default function MoviePage() {
         return setMovieData(value);
     };
 
+    const findDirector = () => {
+        const arr = movieData[1].crew;
+        const writerData = arr.find((crewMember) => crewMember.job ==='Writer');
+        const directorData = arr.find((crewMember) => crewMember.job ==='Director');
+        setDirector({director: directorData, writer: writerData});
+        console.log(directorData, writerData);
+    }
     useEffect(() => {
         fetchData();
     }, [])
@@ -30,6 +39,7 @@ export default function MoviePage() {
         if (movieData !== '') {
             setDate(movieData[0].release_date.slice(0,4))
             setGenres(movieData[0].genres);
+            findDirector();
             setRender(true);
             console.log(movieData);
         }
@@ -61,14 +71,20 @@ export default function MoviePage() {
                                     </div>
                                 ))}
                             </div>
-                            <div className='mt-2 flex'>
+
+                            <div className='mt-2 -ml-5 flex justify-around w-[60%]'>
                                 <ScoreTag score={movieData[0].vote_average}/>
                                 <BudgetTag cost={movieData[0].budget} back={movieData[0].revenue}/>
+                                <BackGroundCast info={director} />
                             </div>
 
+                            <div className='ml-4 mt-5 text-white italic'>
+                                    <h1 className='font-bold opacity-80 text-lg'>{movieData[0].tagline}</h1>
+                                    <h1 className=''>{movieData[0].overview} </h1>
+                            </div>
                         </div>
                     </div>
-                    <div className='w-full h-full opacity-50 absolute bg-sky-800'></div>
+                    <div className='w-full h-full opacity-60 absolute bg-sky-800'></div>
                     <div className='w-full h-[50%] absolute bottom-0 bg-gradient-to-b from-transparent to-black'></div>
                     <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
                 </div>

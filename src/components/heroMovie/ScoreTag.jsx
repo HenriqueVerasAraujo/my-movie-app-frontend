@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import yes from '../assets/yes.png'
-import no from '../assets/no.png'
+import yes from '../../assets/yes.png'
+import no from '../../assets/no.png'
 
 export default function ScoreTag({ score }) {
   const [scoreFormat, setScoreFormat] = useState('');
 
   const formatScore = () => {
-    const newScore = (score.toFixed(2)) * 10;
+    const newScore = ((score.toFixed(2)) * 10).toFixed(1);;
     return setScoreFormat(newScore)
   }
 
