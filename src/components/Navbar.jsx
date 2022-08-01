@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // import SingleMoviePoster from '../components/SingleMoviePoster';
 import { newSearchMovie } from '../links/movieFilter'
 import myContext from '../context/MyContext';
@@ -53,8 +53,12 @@ export default function Navbar() {
         </div>
 
         <div className='w-[20%] h-full flex items-center justify-evenly'>
-          <h1 className='text-2xl font-bold text-amber-50'>Login</h1>
-          <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
+          <Link to='/login'>
+            <h1 className='text-2xl font-bold text-amber-50'>Log In</h1>
+          </Link>
+          <Link to='/register'>
+            <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
+          </Link>
         </div>
       </div>
     </div>
