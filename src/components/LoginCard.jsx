@@ -3,6 +3,7 @@ import { urlApi } from '../links/movieFilter'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import myContext from '../context/MyContext';
+import { randomImage } from '../assets/imagesArray';
 
 
 export default function LoginCard() {
@@ -43,8 +44,12 @@ export default function LoginCard() {
     }
 
   return (
-    <div className='w-[1100px] h-[700px] mt-8 bg-yellow-400 flex items-center justify-between border-2 border-neutral-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
-        <div className='w-[40%] h-full bg-black'></div>
+    <div className=' z-10 w-[1100px] h-[700px] mt-8 bg-yellow-400 flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
+        <div className='w-[40%] relative h-full '>
+            <div className=' w-full h-full bg-sky-800 opacity-60 absolute'></div>
+            <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute'></div>
+            <img className=' object-cover h-full' src={randomImage()} alt="/" />
+        </div>
         <div className='w-[60%] h-full bg-white flex flex-col items-center'>
             <div className='w-full h-[15%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center'>
 				<h1 className='text-5xl font-bold text-white'>Log In</h1>

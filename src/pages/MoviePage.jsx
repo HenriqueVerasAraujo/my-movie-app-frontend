@@ -52,7 +52,7 @@ export default function MoviePage() {
                  {/* HERO SECTION */}
                     <div className='w-full h-[550px] bg-black relative flex justify-center'>
                         <div className='w-[70%] h-full absolute z-10 flex items-center '>
-                            <img className='h-[440px] rounded-lg' src={`https://image.tmdb.org/t/p/original/${movieData[0].poster_path}`} alt="Movie poster not found" />
+                            <img className='h-[440px] rounded-lg' src={`https://image.tmdb.org/t/p/original${movieData[0].poster_path}`} alt="Movie poster not found" />
                             <div className='w-full h-[80%] flex flex-col  ml-7'>
 
                                 <div className='flex items-center '>
