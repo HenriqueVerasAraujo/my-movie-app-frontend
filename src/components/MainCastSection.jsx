@@ -11,13 +11,13 @@ export default function MainCastSection({ actorInfo }) {
   const [render, setRender] = useState(false);
   const [mainCast, SetMainCast] = useState(['']);
   const settings = {
-		slidesPerView: 6,
-		spaceBetween: 0,
+		slidesPerView: 8,
+		spaceBetween: 10,
 		navigation: true
 	}
 
   const sliceMainCast = () => {
-    const newMain = actorInfo.cast.slice(0, 10)
+    const newMain = actorInfo.cast.slice(0, 20)
     SetMainCast(newMain);
   }
 
@@ -28,16 +28,21 @@ export default function MainCastSection({ actorInfo }) {
 
   console.log(actorInfo)
   return (
-    <div className='w-full h-auto bg-green-400'>
-      <Slider settings={settings}>
-        {mainCast.map((singleActor) => (
-          <SwiperSlide>
-            <div>
-              <MainCastCard info={singleActor}/>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Slider>
+    <div className='w-[80%] h-[400px] flex flex-col px-10'>
+      <div className='py-5'>
+        <h1 className='Font-bold text-3xl'>Main Cast:</h1>
+        </div>
+      <div className='flex w-full overflow-visible h-full'>
+        <Slider settings={settings}>
+          {mainCast.map((singleActor) => (
+            <SwiperSlide>
+              <div>
+                <MainCastCard info={singleActor}/>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Slider>
+      </div>
     </div>
   )
 }
