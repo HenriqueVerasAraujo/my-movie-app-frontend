@@ -8,7 +8,7 @@ import MoviePage from './pages/MoviePage';
 function App() {
   return (
  <BrowserRouter>
-  {/* <Navbar /> */}
+  <Navbar />
   <Routes>
     <Route exact path="/" element={ <Home /> } />
     <Route exact path="/search" element={ <SearchPage /> } />
