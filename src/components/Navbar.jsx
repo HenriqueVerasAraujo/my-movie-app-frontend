@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 // import SingleMoviePoster from '../components/SingleMoviePoster';
 import { newSearchMovie } from '../links/movieFilter'
 import myContext from '../context/MyContext';
-import { render } from '@testing-library/react';
-
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
@@ -15,7 +13,6 @@ export default function Navbar() {
   const fetchData = async(link) => {
 		const allData = await fetch(link);
 		const allDataJson = await allData.json();
-		console.log(allDataJson);
 		setMovieData(allDataJson.results);
 	};
 
@@ -53,14 +50,21 @@ export default function Navbar() {
       setRenderLogin(true);
     }
   }
+  const logoutFunction = () => {
+    localStorage.clear();
+    setRenderLogin(false);
+    setUsername('');
+    navigate('/');
+    window.location.reload();
+  }
 
-    useEffect(() => {
+  useEffect(() => {
       enterSite();
-    }, [])
+  }, [])
 
-    useEffect(() => {
+  useEffect(() => {
       verifyLogin();
-    }, [username]);
+  }, [username]);
 
   return (
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-10'>
@@ -78,20 +82,17 @@ export default function Navbar() {
           { renderLogin === false ? (
             <div className='w-[20%] h-full flex items-center justify-evenly'>
               <Link to='/login'>
-                <h1 className='text-2xl font-bold text-amber-50'>Log In</h1>
+                <h1 className='text-2xl font-bold text-amber-50 hover:text-yellow-300'>Log In</h1>
               </Link>
               <Link to='/register'>
-                <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
+                <h1 className='text-2xl font-bold text-amber-50 hover:text-yellow-300'>Sign Up</h1>
               </Link>
             </div>
           ) : (
             <div className='w-[20%] h-full flex items-center justify-evenly'>
                 <h1 className='text-2xl font-bold text-amber-50'>{username}</h1>
-              <Link to='/register'>
-                <h1 className='text-2xl font-bold text-amber-50'>Log Out</h1>
-              </Link>
+                <h1 onClick={logoutFunction} className='text-2xl font-bold text-amber-50 hover:text-yellow-300'>Log Out</h1>
           </div>
-
           ) }
       </div>
     </div>

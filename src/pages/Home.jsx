@@ -14,7 +14,6 @@ export default function Home() {
 	const fetchData = async(link) => {
 		const allData = await fetch(link);
 		const allDataJson = await allData.json();
-		console.log(allDataJson.results);
 		setMovieData(allDataJson.results);
 	};
 
@@ -35,7 +34,7 @@ export default function Home() {
 		{render && (
 			movieData.map((s) => (
 				<div key={s.id}>
-					<SwiperSlide>
+					<SwiperSlide key={s.title} >
 						<SingleMoviePoster movie={s} />
 					</SwiperSlide>
 				</div>

@@ -40,7 +40,6 @@ export default function LoginCard() {
             setUsername(tryLogin.data.username);
             navigate('/');
         }
-        console.log(tryLogin);
     }
 
   return (
@@ -82,7 +81,7 @@ export default function LoginCard() {
                         )}
                     </div>
                 </form>
-                 <button className='w-[80%] bg-sky-700 rounded-md p-3 mt-10 text-white font-bold text-xl hover:bg-white hover:text-sky-700 hover:border-2 hover:border-sky-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]' 
+                 <button className='w-[80%] bg-sky-700 rounded-md p-3 mt-10 text-white font-bold text-xl border-2 border-sky-700  hover:bg-white  hover:text-sky-700   shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]' 
                  onClick={LoginFunction} 
                  type='buttom'
                  >
