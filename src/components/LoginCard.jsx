@@ -2,13 +2,15 @@ import React, { useState, useContext } from 'react'
 import { urlApi } from '../links/movieFilter'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import myContext from '../context/MyContext';
 
 
 export default function LoginCard() {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('123456');
     const [errMessage2, setErrMessage2] = useState('');
     const [errMessage3, setErrMessage3] = useState('');
+    const { setUsername } = useContext(myContext);
 
     const navigate = useNavigate();
 
@@ -25,16 +27,17 @@ export default function LoginCard() {
         setErrMessage3('');
         const data = { email, password };
         const tryLogin = await axios.post(`${urlApi}/users/login`, data);
-        if (tryLogin.errMessage2) {
+        if (tryLogin.data.errMessage2) {
             setErrMessage2(tryLogin.data.errMessage2);
         }
-        if (tryLogin.errMessage3) {
+        if (tryLogin.data.errMessage3) {
             setErrMessage3(tryLogin.data.errMessage3);
         }
-        if (tryLogin.token) {
+        if (tryLogin.data.token) {
             localStorage.setItem('token', tryLogin.data.token);
             localStorage.setItem('username', tryLogin.data.username);
             localStorage.setItem('id', tryLogin.data.id);
+            setUsername(tryLogin.data.username);
             navigate('/');
         }
         console.log(tryLogin);
@@ -43,28 +46,54 @@ export default function LoginCard() {
   return (
     <div className='w-[1100px] h-[700px] mt-8 bg-yellow-400 flex items-center justify-between border-2 border-neutral-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='w-[40%] h-full bg-black'></div>
-        <div className='w-[60%] h-full bg-white flex flex-col'>
-            <div className='w-full h-[15%] bg-yellow-400 border-b-4 border-neutral-800 flex justify-center items-center'>
-				<h1 className='text-5xl font-bold'>Log in</h1>
+        <div className='w-[60%] h-full bg-white flex flex-col items-center'>
+            <div className='w-full h-[15%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center'>
+				<h1 className='text-5xl font-bold text-white'>Log In</h1>
 			</div>
-            <div className='w-full h-[85%] mt-[70px] bg-white flex flex-col items-center'>
-                <form>
+            <div className='w-[85%] h-full  flex flex-col items-center justify-center mb-[150px]'>
+                <form className='flex flex-col w-full h-auto'>
                     <div className='flex flex-col'>
-                    <label className='text-xl' htmlFor='email' >Email:</label>
-                        <input onChange={emailInput} name='email' type="text" placeholder='Your Email here...'/>
+                    <label className='text-2xl' htmlFor='email' >Email:</label>
+                        <input 
+                        className='mb-5 border-2 rounded-md text-2xl'
+                        onChange={emailInput} 
+                        name='email' 
+                        type="text" 
+                        placeholder='Your Email here...' 
+                        autoComplete='off'
+                        />
+
                         {errMessage2 !== '' && (
-                            <h1>{errMessage2}</h1>
+                            <h1 className='text-red-600 -mt-4 text-lg'>{errMessage2}</h1>
                         )}
                     </div>
-                    <div className='flex flex-col'>
-                        <label className='text-xl' htmlFor='password'>Password:</label>
-                            <input onChange={passwordInput} name='password' type="password" placeholder='Your Password here...' />
+                    <div className='flex flex-col mt-7'>
+                        <label className='text-2xl' htmlFor='password'>Password:</label>
+                            <input 
+                            className='mb-5 border-2 rounded-md text-2xl' 
+                            onChange={passwordInput} 
+                            name='password' type="password" 
+                            placeholder='Your Password here...' 
+                            autoComplete='off' 
+                            />
+
                             {errMessage3 !== '' && (
-                            <h1>{errMessage3}</h1>
+                            <h1 className='text-red-600 -mt-4 text-lg'>{errMessage3}</h1>
                         )}
                     </div>
                 </form>
-                 <button onClick={LoginFunction} type='buttom'>Log In</button>
+                 <button className='w-[80%] bg-sky-700 rounded-md p-3 mt-10 text-white font-bold text-xl hover:bg-white hover:text-sky-700 hover:border-2 hover:border-sky-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]' 
+                 onClick={LoginFunction} 
+                 type='buttom'
+                 >
+                    LOG IN
+                </button>
+                <div className='flex mt-10'>
+                    <h1>Don't have an Account?</h1>
+                    <Link to='/register'>
+                        <h1 className='text-blue-700 ml-1'>Click here to create one!</h1>
+                    </Link>
+                </div>
             </div>
         </div>
         

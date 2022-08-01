@@ -3,11 +3,13 @@ import { useNavigate, Link } from 'react-router-dom';
 // import SingleMoviePoster from '../components/SingleMoviePoster';
 import { newSearchMovie } from '../links/movieFilter'
 import myContext from '../context/MyContext';
+import { render } from '@testing-library/react';
 
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
-  const { movieData, setMovieData } = useContext(myContext);
+  const { movieData, setMovieData, username, setUsername } = useContext(myContext);
+  const [renderLogin, setRenderLogin] = useState(false);
   const navigate = useNavigate();
 
   const fetchData = async(link) => {
@@ -39,6 +41,27 @@ export default function Navbar() {
 		}
 	};
 
+  const enterSite = () => {
+    const checkUsername = localStorage.getItem('username');
+    if (checkUsername) {
+      setUsername(checkUsername);
+    }
+  }
+  
+  const verifyLogin =  () => {
+    if (username) {
+      setRenderLogin(true);
+    }
+  }
+
+    useEffect(() => {
+      enterSite();
+    }, [])
+
+    useEffect(() => {
+      verifyLogin();
+    }, [username]);
+
   return (
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-10'>
       <div className='w-[95%] h-full flex items-center'>
@@ -52,14 +75,24 @@ export default function Navbar() {
           <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>
         </div>
 
-        <div className='w-[20%] h-full flex items-center justify-evenly'>
-          <Link to='/login'>
-            <h1 className='text-2xl font-bold text-amber-50'>Log In</h1>
-          </Link>
-          <Link to='/register'>
-            <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
-          </Link>
-        </div>
+          { renderLogin === false ? (
+            <div className='w-[20%] h-full flex items-center justify-evenly'>
+              <Link to='/login'>
+                <h1 className='text-2xl font-bold text-amber-50'>Log In</h1>
+              </Link>
+              <Link to='/register'>
+                <h1 className='text-2xl font-bold text-amber-50'>Sign Up</h1>
+              </Link>
+            </div>
+          ) : (
+            <div className='w-[20%] h-full flex items-center justify-evenly'>
+                <h1 className='text-2xl font-bold text-amber-50'>{username}</h1>
+              <Link to='/register'>
+                <h1 className='text-2xl font-bold text-amber-50'>Log Out</h1>
+              </Link>
+          </div>
+
+          ) }
       </div>
     </div>
   )
