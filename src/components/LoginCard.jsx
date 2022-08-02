@@ -44,7 +44,7 @@ export default function LoginCard() {
     }
 
   return (
-    <div className=' z-10 w-[1100px] h-[700px] mt-8 bg-yellow-400 flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
+    <div className=' z-10 w-[1100px] h-[700px] mt-8 bg-black flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='w-[40%] relative h-full '>
             <div className=' w-full h-full bg-sky-800 opacity-60 absolute'></div>
             <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute'></div>

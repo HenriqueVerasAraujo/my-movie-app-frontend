@@ -1,4 +1,4 @@
-export const imagesArray = [
+const imagesArray = [
     'https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg',
     'https://image.tmdb.org/t/p/original/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg',
     'https://image.tmdb.org/t/p/original/or1gBugydmjToAEq7OZY0owwFk.jpg',
