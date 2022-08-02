@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { randomImage } from '../assets/imagesArray'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
@@ -12,6 +12,7 @@ export default function RegisterCard() {
     const [errMessage1, setErrMessage1] = useState('');
     const [errMessage2, setErrMessage2] = useState('');
     const [errMessage3, setErrMessage3] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
     const emailInput = ({ target }) => {
         setEmail(target.value);
@@ -25,6 +26,9 @@ export default function RegisterCard() {
         setPassword(target.value);
     };
 
+    useEffect(() => {
+        setImageUrl(randomImage());
+    },[]);
 
     const registerFunction = async() => {
         setErrMessage1('');
@@ -50,7 +54,7 @@ export default function RegisterCard() {
         <div className='w-[40%] relative h-full '>
             <div className=' w-full h-full bg-sky-800 opacity-60 absolute'></div>
             <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute'></div>
-            <img className=' object-cover h-full' src={randomImage()} alt="/" />
+            <img className=' object-cover h-full' src={imageUrl} alt="/" />
         </div>
         <div className='w-[60%] h-full bg-white flex flex-col items-center'>
             <div className='w-full h-[12%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center'>

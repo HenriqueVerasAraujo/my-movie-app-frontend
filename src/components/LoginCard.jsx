@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { urlApi } from '../links/movieFilter'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,6 +12,7 @@ export default function LoginCard() {
     const [errMessage2, setErrMessage2] = useState('');
     const [errMessage3, setErrMessage3] = useState('');
     const { setUsername } = useContext(myContext);
+    const [imageUrl, setImageUrl] = useState('');
 
     const navigate = useNavigate();
 
@@ -22,6 +23,10 @@ export default function LoginCard() {
     const passwordInput = ({ target }) => {
         setPassword(target.value);
     };
+
+    useEffect(() => {
+        setImageUrl(randomImage());
+    },[]);
 
     const LoginFunction = async() => {
         setErrMessage2('');
@@ -48,7 +53,7 @@ export default function LoginCard() {
         <div className='w-[40%] relative h-full '>
             <div className=' w-full h-full bg-sky-800 opacity-60 absolute'></div>
             <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute'></div>
-            <img className=' object-cover h-full' src={randomImage()} alt="/" />
+            <img className=' object-cover h-full' src={imageUrl} alt="/" />
         </div>
         <div className='w-[60%] h-full bg-white flex flex-col items-center'>
             <div className='w-full h-[15%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center'>

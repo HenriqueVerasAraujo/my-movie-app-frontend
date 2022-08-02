@@ -6,6 +6,8 @@ import ScoreTag from '../components/heroMovie/ScoreTag';
 import BudgetTag from '../components/heroMovie/BudgetTag';
 import BackGroundCast from '../components/heroMovie/BackGroundCast';
 import MainCastSection from '../components/MainCastSection';
+import axios from 'axios';
+import { urlApi } from '../links/movieFilter';
 
 
 export default function MoviePage() {
@@ -14,6 +16,7 @@ export default function MoviePage() {
     const [date, setDate] = useState('');
     const [genres, setGenres] =useState(['']);
     const [render, setRender] = useState(false);
+    const [reviews, setReviews] = useState(['']);
     const { id } = useParams();
 
     const fetchData = async() => {
@@ -25,6 +28,10 @@ export default function MoviePage() {
         return setMovieData(value);
     };
 
+    const fetchReviews = async() => {
+        const allReviews = await axios.get(`${urlApi}/reviews/${id}`);
+        setReviews(allReviews.data);
+    }
     const findDirector = () => {
         const arr = movieData[1].crew;
         const writerData = arr.find((crewMember) => crewMember.job ==='Writer');
@@ -33,6 +40,7 @@ export default function MoviePage() {
     }
     useEffect(() => {
         fetchData();
+        fetchReviews();
     }, [])
 
     useEffect(() => {
@@ -92,6 +100,10 @@ export default function MoviePage() {
                     {/* MAIN CAST SECTION */}
                     <div className='w-full bg-white flex justify-center'>
                         <MainCastSection actorInfo={movieData[1]}/>
+                    </div>
+                    {/* REVIEWS AREA */}
+                    <div className='w-full bg-white flex justify-center'>
+                                        
                     </div>
              </div>
         )}
