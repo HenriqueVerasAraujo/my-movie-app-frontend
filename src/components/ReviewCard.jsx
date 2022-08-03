@@ -1,7 +1,5 @@
 import React from 'react'
 import moment from 'moment';
-import yes from '../assets/yes.png';
-import no from '../assets/no.png';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
 
