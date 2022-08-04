@@ -6,8 +6,10 @@ import { movieById } from '../links/movieFilter';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
 import CommentCard from '../components/CommentCard';
+import { useNavigate } from 'react-router-dom';
 
 export default function ReviewPage() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [reviewData, setReviewData] = useState('');
     const [movieId, setMovieId] = useState(0);
@@ -20,6 +22,7 @@ export default function ReviewPage() {
     const fetchData = async() => {
         axios.get(`${urlApi}/reviews/getone/${id}`).then((response) => {
             setReviewData(response.data);
+            setMovieId(response.data.movieId);
             return fetch(movieById(response.data.movieId))
         }).then((response) => response.json()).then((response) => setMovieInfo(response));
     };
@@ -29,8 +32,8 @@ export default function ReviewPage() {
     }
 
     const createComment = async() => {
-        setErrMessage4('')
-        setErrMessage1('')
+        setErrMessage4('');
+        setErrMessage1('');
         const data = { commentBody: input }
         const createComment = await axios
         .post(`${urlApi}/comments/create/${id}`, 
@@ -44,7 +47,7 @@ export default function ReviewPage() {
         }
         setRender(false);
         await fetchData();
-        
+        setImput('');
     }
 
     useEffect(() => {
@@ -64,7 +67,7 @@ export default function ReviewPage() {
             {/* SIDE */}
                 <div className='w-[20%] h-[93%] fixed left-0 z-10 bg-slate-900'>
                     {render && (
-                        <div className='w-full h-full relative flex items-center'>
+                        <div onClick={()=> navigate(`/movie/${movieId}`)} className='w-full h-full relative flex items-center'>
                             <div className='absolute w-full h-full  bg-sky-700/50'></div>
                             <div className='absolute w-full h-[40%] top-0 bg-gradient-to-b from-black to-transparent'></div>
                             <div className='absolute w-full h-[40%] bottom-0 bg-gradient-to-t from-black to-transparent'></div>
@@ -109,8 +112,8 @@ export default function ReviewPage() {
                                         <label className='text-xl text-zinc-700' htmlFor="comment ">Create a new Comment:</label>
                                         <textarea onChange={textInput} className='w-full h-[70px] rounded-md mt-1 resize-none border-2 border-sky-700' name="comment" id="comment "></textarea>
                                     </form>
-                                    <div className='flex mb-5 -mt-2 items-center'>
-                                        <button className='text-lg mx-3 font-bold' type='button ' onClick={createComment}>Send</button>
+                                    <div className='flex mb-5 items-center'>
+                                        <button className='text-lg mx-3  mofont-bold p-2 bg-sky-700 text-white rounded-md border-2 border-sky-700 hover:brightness-125' type='button ' onClick={createComment}>Send</button>
                                         {errMessage4 !== '' && (
                                             <h1 className='text-red-600'>{errMessage4}</h1>
                                         )}
@@ -127,7 +130,7 @@ export default function ReviewPage() {
                                         ))
                                 ):(
                                     <div>
-                                        <h1 className='text-lg text-zinc-700'>There are no comments for this review</h1>
+                                        <h1 className='text-lg text-zinc-700'>There are no comments for this review yet.</h1>
                                     </div>
                                 )}
                             </div>

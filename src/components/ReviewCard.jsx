@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import moment from 'moment';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ReviewCard({ review }) {
     const navigate = useNavigate();
+    const [renderDelete, setRenderDelete] = useState(false);
 
     const formatDate = () => {
         const date = `${review.createdAt}`;
@@ -16,6 +17,23 @@ export default function ReviewCard({ review }) {
     const redirect = () => {
         navigate(`/review/${review.id}`);
     }
+
+    const checkIfIsUser = () => {
+        const userIdFromLocal = localStorage.getItem('id');
+        if (Number(userIdFromLocal) === review.userId) {
+            return setRenderDelete(true);
+        }
+        return setRenderDelete(false);
+    }
+
+    useEffect(() => {
+        checkIfIsUser();
+    }, [])
+
+    const deleteFunction = async() => {
+
+    }
+
   return (
     <div className='w-[70%] h-[120px] flex flex-col bg-neutral-200  rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:shadow-[10px_10px_20px_0px_rgba(0,0,0,0.3)] hover:-translate-x-2 hover:-translate-y-2 duration-200 ease-in-out'>
        {/* HEADER */}
@@ -47,11 +65,13 @@ export default function ReviewCard({ review }) {
             </div>
         </div>
         {/* FOOTER */}
-        <div className='w-full h-[60%] bg-neutral-300  opacity-50 rounded-b-md'>
-
+        <div className='w-full h-[60%] bg-neutral-300/50   rounded-b-md'>
+            {renderDelete ? (
+                <button onClick={deleteFunction} className='p-2 bg-slate-700 hover:bg-red-700 text-white font-bold rounded-bl-md'>Delete</button>
+            ) : (
+                <button onClick={deleteFunction} className='p-2 bg-slate-700/0 hover:cursor-default text-white/0 font-bold'>Delete</button>
+            )}
         </div>
     </div>
   )
 }   
-
-// title, author, data, score, likes, comments, 
