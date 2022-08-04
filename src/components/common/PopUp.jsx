@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { urlApi } from '../../links/important';
+import React, { useState, useEffect, useContext } from 'react'
+import  { urlApi } from '../../links/movieFilter';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
+import axios from 'axios';
+import myContext from '../../context/MyContext';
 
 export default function PopUp({ movie, movieId }) {
     const [title, setTitle] = useState('');
@@ -17,9 +19,27 @@ export default function PopUp({ movie, movieId }) {
     const [errMessage1, setErrMessage1] = useState('');
     const [errMessage2, setErrMessage2] = useState('');
     const [errMessage3, setErrMessage3] = useState('');
+    const { setPopUp } = useContext(myContext);
 
     const submitFunction = async() => {
-        
+        setErrMessage1('');
+        setErrMessage2('');
+        setErrMessage3('');
+        const data = { title, reviewBody, score, userId, movieId };
+        const createReview = await axios
+        .post(`${urlApi}/reviews/create/${movieId}`, data, {headers: {token: localStorage.getItem('token')}});
+        if (createReview.data.errMessage1) {
+            return setErrMessage1(createReview.data.errMessage1);
+        }
+        if (createReview.data.errMessage2) {
+            return setErrMessage2(createReview.data.errMessage2);
+        }
+        if (createReview.data.errMessage3) {
+            return setErrMessage3(createReview.data.errMessage3);
+        }
+        setPopUp(false);
+        window.location.reload();
+        return alert('Review Created! Thank you for your review!');
     }
 
     const getUsername = () => {
@@ -75,7 +95,7 @@ export default function PopUp({ movie, movieId }) {
     <div className='w-full h-screen fixed z-10 bg-black/90 flex justify-center items-center'>
         {render && (
             <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[90%] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
-                <div className='w-full h-auto flex justify-end relative'>
+                <div onClick={() => setPopUp(false)} className='w-full h-auto flex justify-end relative'>
                     <h1 className='w-auto font-bold text-4xl px-2 py-0 m-3 bg-sky-700 rounded-md text-white border-2 hover:text-sky-700 hover:bg-white/0 border-sky-700 hover:cursor-pointer'>X</h1>
                 </div>
                 <div className='flex flex-col text-zinc-800  w-[95%]'>
@@ -95,7 +115,7 @@ export default function PopUp({ movie, movieId }) {
                                 placeholder='The headline of your review here...' />
                                 
                                 {errMessage1 !== '' && (
-                                    <h1 className='text-red-600 -mt-4 text-lg'>{errMessage1}</h1>
+                                    <h1 className='text-red-600 text-lg'>{errMessage1}</h1>
                                 )}
                             </div>
                             <div className='flex justify-center items-end '>
@@ -117,11 +137,11 @@ export default function PopUp({ movie, movieId }) {
                             placeholder='Your review here...'
                              />
                             {errMessage2 !== '' && (
-                                <h1 className='text-red-600 -mt-4 text-lg'>{errMessage2}</h1>
+                                <h1 className='text-red-600 text-lg'>{errMessage2}</h1>
                             )}
                         </div>
                         <div className='w-full absolute bottom-[60px] flex items-center mt-10'>
-                            <label className='text-xl text-zinc-700 mr-1 font-bold' htmlFor='score'>Final Score:</label>
+                            <label className='text-xl  text-zinc-700 mr-1 font-bold' htmlFor='score'>Final Score:</label>
                             <select onChange={ scoreInput } id='score' className='rounded-md text-xl text-zinc-700 w-min font-bold'>
                                 <option className='text-2xl' value='N/A'>N/A</option>
                                 <option className='text-2xl' value='0'>0</option>
@@ -142,6 +162,9 @@ export default function PopUp({ movie, movieId }) {
                                 </div>
                         </div>
                     </form>
+                                {errMessage3 !== '' && (
+                                <h1 className='text-red-600 text-lg relative bottom-0'>{errMessage3}</h1>
+                            )}
                     <button
                     onClick={submitFunction}
                     className='absolute bottom-[50px] right-[150px] px-10 py-3 rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'

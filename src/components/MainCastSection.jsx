@@ -26,7 +26,6 @@ export default function MainCastSection({ actorInfo }) {
     setRender(true)
   }, [])
 
-  console.log(actorInfo)
   return (
     <div className='w-[80%] h-[430px] flex flex-col px-10'>
       <div className='py-5'>

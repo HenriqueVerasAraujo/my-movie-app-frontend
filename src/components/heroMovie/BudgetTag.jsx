@@ -14,7 +14,6 @@ export default function BudgetTag({ cost, back }) {
     }
     if (original.toString().length >= 10 ) {
     const newValue = (original/1000000000).toFixed(2);
-    console.log(original);
     return `${newValue} Billion Dollars`
   }
     if (original.toString().length > 7 || original.toString().length < 9) {
