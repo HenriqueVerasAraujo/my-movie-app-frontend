@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import moment from 'moment';
-import { StarIcon } from '@heroicons/react/outline';
-import { StarIcon as SolidStar } from '@heroicons/react/solid';
+import { StarIcon, AnnotationIcon, ThumbUpIcon } from '@heroicons/react/outline';
+import { StarIcon as SolidStar, ThumbUpIcon as SolidThumb } from '@heroicons/react/solid';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { urlApi } from '../links/movieFilter';
 
 export default function ReviewCard({ review }) {
     const navigate = useNavigate();
@@ -31,7 +33,8 @@ export default function ReviewCard({ review }) {
     }, [])
 
     const deleteFunction = async() => {
-
+        const deleteReview = await axios.delete(`${urlApi}/reviews/${review.id}`);
+        return deleteReview;
     }
 
   return (
@@ -65,12 +68,23 @@ export default function ReviewCard({ review }) {
             </div>
         </div>
         {/* FOOTER */}
-        <div className='w-full h-[60%] bg-neutral-300/50   rounded-b-md'>
+        <div className='w-full h-[60%] flex justify-between bg-neutral-300/50 rounded-b-md'>
             {renderDelete ? (
                 <button onClick={deleteFunction} className='p-2 bg-slate-700 hover:bg-red-700 text-white font-bold rounded-bl-md'>Delete</button>
             ) : (
                 <button onClick={deleteFunction} className='p-2 bg-slate-700/0 hover:cursor-default text-white/0 font-bold'>Delete</button>
             )}
+            <div className='flex items-center'>
+                <div onClick={redirect} className='flex h-full w-auto items-center hover:cursor-pointer pr-5'>
+                    <ThumbUpIcon className='h-7 w-7 text-zinc-700' />
+                    {/* <h1 className='text-xl font-medium text-zinc-700'>{review.comments.length}</h1> */}
+                </div>
+
+                <div onClick={redirect} className='flex h-full w-auto items-center hover:cursor-pointer pr-10'>
+                    <AnnotationIcon className='h-7 w-7 text-zinc-700' />
+                    <h1 className='text-xl font-medium text-zinc-700'>{review.comments.length}</h1>
+                </div>
+            </div>
         </div>
     </div>
   )
