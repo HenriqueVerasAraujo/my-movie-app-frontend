@@ -26,13 +26,12 @@ export default function MainCastSection({ actorInfo }) {
     setRender(true)
   }, [])
 
-  console.log(actorInfo)
   return (
-    <div className='w-[80%] h-[400px] flex flex-col px-10'>
+    <div className='w-[80%] h-[430px] flex flex-col px-10'>
       <div className='py-5'>
-        <h1 className='Font-bold text-3xl'>Main Cast:</h1>
+        <h1 className='Font-bold text-3xl'>Main Cast</h1>
         </div>
-      <div className='flex w-full overflow-visible h-full'>
+      <div className='flex w-full h-full'>
         <Slider settings={settings}>
           {mainCast.map((singleActor) => (
             <SwiperSlide>

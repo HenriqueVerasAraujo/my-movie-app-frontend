@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import { movieById, movieCastById } from '../links/movieFilter';
 import GenreButton from '../components/heroMovie/GenreButton';
@@ -8,6 +8,9 @@ import BackGroundCast from '../components/heroMovie/BackGroundCast';
 import MainCastSection from '../components/MainCastSection';
 import axios from 'axios';
 import { urlApi } from '../links/movieFilter';
+import ReviewSection from '../components/ReviewSection';
+import PopUp from '../components/common/PopUp';
+import myContext from '../context/MyContext';
 
 
 export default function MoviePage() {
@@ -17,6 +20,7 @@ export default function MoviePage() {
     const [genres, setGenres] =useState(['']);
     const [render, setRender] = useState(false);
     const [reviews, setReviews] = useState(['']);
+    const { popUp, setPopUp } = useContext(myContext);
     const { id } = useParams();
 
     const fetchData = async() => {
@@ -54,7 +58,10 @@ export default function MoviePage() {
 
   return (
     <div className='w-full h-screen bg-slate-200'>
-        <div className='w-full h-auto bg-slate-200 flex flex-col absolute top-[75px] z-0'>
+        {popUp && (
+            <PopUp movie={movieData[0]} movieId={id}/>
+        )}
+        <div className='w-full h-auto bg-black flex flex-col absolute top-[75px] z-0'>
          {render && (
              <div>
                  {/* HERO SECTION */}
@@ -103,7 +110,7 @@ export default function MoviePage() {
                     </div>
                     {/* REVIEWS AREA */}
                     <div className='w-full bg-white flex justify-center'>
-                                        
+                        <ReviewSection movieId={id} movieName={movieData[0].title}/>
                     </div>
              </div>
         )}
