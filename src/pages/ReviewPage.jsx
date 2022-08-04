@@ -14,6 +14,7 @@ export default function ReviewPage() {
     const [movieInfo, setMovieInfo] = useState('');
     const [render, setRender] = useState(false);
     const [errMessage4, setErrMessage4] = useState('');
+    const [errMessage1, setErrMessage1] = useState('');
     const [input, setImput] = useState('');
 
     const fetchData = async() => {
@@ -29,6 +30,7 @@ export default function ReviewPage() {
 
     const createComment = async() => {
         setErrMessage4('')
+        setErrMessage1('')
         const data = { commentBody: input }
         const createComment = await axios
         .post(`${urlApi}/comments/create/${id}`, 
@@ -36,6 +38,9 @@ export default function ReviewPage() {
         {headers: {token: localStorage.getItem('token')}});
         if (createComment.data.errMessage4) {
             return setErrMessage4('You need to be logged in to create a comment!');
+        }
+        if (createComment.data.errMessage1) {
+            return setErrMessage4(createComment.data.errMessage1);
         }
         setRender(false);
         await fetchData();
@@ -109,6 +114,9 @@ export default function ReviewPage() {
                                         {errMessage4 !== '' && (
                                             <h1 className='text-red-600'>{errMessage4}</h1>
                                         )}
+                                        {errMessage1!== '' && (
+                                            <h1 className='text-red-600'>{errMessage1}</h1>
+                                        )}
                                     </div>
                                 </div>
                                 {reviewData.comments.length !== 0 ? (
@@ -117,13 +125,11 @@ export default function ReviewPage() {
                                                 <CommentCard comment={comment}/>
                                             </div>
                                         ))
-                                   
                                 ):(
                                     <div>
                                         <h1 className='text-lg text-zinc-700'>There are no comments for this review</h1>
                                     </div>
                                 )}
-
                             </div>
                         </div>
                     )}
