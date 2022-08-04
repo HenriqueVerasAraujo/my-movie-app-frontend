@@ -10,7 +10,6 @@ export default function ReviewCard({ review }) {
     const formatDate = () => {
         const date = `${review.createdAt}`;
         const newDate = moment(date).format('DD/MM/YYYY - HH:MM');
-        console.log(review.id);
         return newDate;
     }
 

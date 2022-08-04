@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { movieById } from '../links/movieFilter';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
+import CommentCard from '../components/CommentCard';
 
 export default function ReviewPage() {
     const { id } = useParams();
@@ -12,6 +13,8 @@ export default function ReviewPage() {
     const [movieId, setMovieId] = useState(0);
     const [movieInfo, setMovieInfo] = useState('');
     const [render, setRender] = useState(false);
+    const [errMessage4, setErrMessage4] = useState('');
+    const [input, setImput] = useState('');
 
     const fetchData = async() => {
         axios.get(`${urlApi}/reviews/getone/${id}`).then((response) => {
@@ -19,6 +22,25 @@ export default function ReviewPage() {
             return fetch(movieById(response.data.movieId))
         }).then((response) => response.json()).then((response) => setMovieInfo(response));
     };
+
+    const textInput = ({ target }) => {
+        setImput(target.value)
+    }
+
+    const createComment = async() => {
+        setErrMessage4('')
+        const data = { commentBody: input }
+        const createComment = await axios
+        .post(`${urlApi}/comments/create/${id}`, 
+        data,
+        {headers: {token: localStorage.getItem('token')}});
+        if (createComment.data.errMessage4) {
+            return setErrMessage4('You need to be logged in to create a comment!');
+        }
+        setRender(false);
+        await fetchData();
+        
+    }
 
     useEffect(() => {
         fetchData();
@@ -46,7 +68,7 @@ export default function ReviewPage() {
                     )}
                 </div>
             {/* REVIEW  */}
-                <div className='w-[80%] h-full flex flex-col items-center'>
+                <div className='w-[80%] h-auto bg-slate-200 flex flex-col items-center'>
                     {render && (
                         // ReviewBody
                         <div className='w-[97%] h-auto'>
@@ -75,7 +97,32 @@ export default function ReviewPage() {
                                 </div>
                             </div> 
                             {/* Comments  */}
-                            <div className=''>
+                            <div className='w-full h-auto mt-[50px] p-5 flex flex-col b'>
+                                <h1 className='text-zinc-700 text-3xl mb-7'>Comments about this review</h1>
+                                <div className='w-full h-auto'>
+                                    <form>
+                                        <label className='text-xl text-zinc-700' htmlFor="comment ">Create a new Comment:</label>
+                                        <textarea onChange={textInput} className='w-full h-[70px] rounded-md mt-1 resize-none border-2 border-sky-700' name="comment" id="comment "></textarea>
+                                    </form>
+                                    <div className='flex mb-5 -mt-2 items-center'>
+                                        <button className='text-lg mx-3 font-bold' type='button ' onClick={createComment}>Send</button>
+                                        {errMessage4 !== '' && (
+                                            <h1 className='text-red-600'>{errMessage4}</h1>
+                                        )}
+                                    </div>
+                                </div>
+                                {reviewData.comments.length !== 0 ? (
+                                        reviewData.comments.map((comment) => (
+                                            <div key={comment.id}>
+                                                <CommentCard comment={comment}/>
+                                            </div>
+                                        ))
+                                   
+                                ):(
+                                    <div>
+                                        <h1 className='text-lg text-zinc-700'>There are no comments for this review</h1>
+                                    </div>
+                                )}
 
                             </div>
                         </div>
