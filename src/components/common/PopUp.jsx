@@ -84,7 +84,7 @@ export default function PopUp({ movie, movieId }) {
         } else {
             setColor('red-600');
         }
-        if (countReview < 1000) {
+        if (countReview < 3000) {
             setColor2('blue-900');
         } else {
             setColor2('red-600');
@@ -126,7 +126,7 @@ export default function PopUp({ movie, movieId }) {
                         <div className='flex flex-col w-full mt-8'>
                             <div className='flex items-center'>
                                 <label className='text-2xl text-zinc-700' htmlFor="review">Review:</label>
-                                <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/1000 characteres)</h1>
+                                <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characteres)</h1>
 
                             </div>
                             <textarea 

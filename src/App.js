@@ -5,7 +5,8 @@ import Navbar from './components/Navbar';
 import SearchPage from './pages/SearchPage';
 import MoviePage from './pages/MoviePage';
 import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage'
+import RegisterPage from './pages/RegisterPage';
+import ReviewPage from './pages/ReviewPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <Route exact path="/register" element={ <RegisterPage /> } />
     <Route exact path="/search" element={ <SearchPage /> } />
     <Route exact path="/movie/:id" element={ <MoviePage /> } />
+    <Route exact path="/review/:id" element={ <ReviewPage /> } />
   </Routes>
  </BrowserRouter>
   );

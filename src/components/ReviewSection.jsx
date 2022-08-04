@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
 import { urlApi } from '../links/movieFilter';
-import no from '../assets/no.png'
 import ReviewCard from './ReviewCard';
 import myContext from '../context/MyContext';
 
