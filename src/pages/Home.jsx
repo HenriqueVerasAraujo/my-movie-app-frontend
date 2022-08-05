@@ -8,29 +8,29 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default function Home() {
-	const { movieData, setMovieData } = useContext(myContext);
-	const [render, setRender] = useState(false);
+	// const { movieData, setMovieData } = useContext(myContext);
+	// const [render, setRender] = useState(false);
 
-	const fetchData = async(link) => {
-		const allData = await fetch(link);
-		const allDataJson = await allData.json();
-		setMovieData(allDataJson.results);
-	};
+	// const fetchData = async(link) => {
+	// 	const allData = await fetch(link);
+	// 	const allDataJson = await allData.json();
+	// 	setMovieData(allDataJson.results);
+	// };
 
-	const settings = {
-		slidesPerView: 6,
-		spaceBetween: 0,
-		navigation: true
-	}
+	// const settings = {
+	// 	slidesPerView: 6,
+	// 	spaceBetween: 0,
+	// 	navigation: true
+	// }
 
-	useEffect(() => {
-		fetchData(defaultSearchMovie);
-		setRender(true);
-	}, []);
+	// useEffect(() => {
+	// 	fetchData(defaultSearchMovie);
+	// 	setRender(true);
+	// }, []);
 
   return (
 	  <div className='w-[50%]'>
-		<Slider settings={settings} >
+		{/* <Slider settings={settings} >
 		{render && (
 			movieData.map((s) => (
 				<div key={s.id}>
@@ -40,7 +40,7 @@ export default function Home() {
 				</div>
 			))
 		)}
-		</Slider>
+		</Slider> */}
 	  </div>
   );
 };

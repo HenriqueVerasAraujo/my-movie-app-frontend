@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 // import SingleMoviePoster from '../components/SingleMoviePoster';
-import { newSearchMovie } from '../links/movieFilter'
+import { newSearchMovie, findActorName, findMovieByActorId } from '../links/movieFilter'
 import myContext from '../context/MyContext';
 
 export default function Navbar() {
@@ -30,10 +30,17 @@ export default function Navbar() {
 		await fetchData(newMovieList)
 	};
 
+  // const searchButton = async() => {
+	// 	if (inputField.length !== 0) {
+	// 		await formatInputReturn();
+	// 		await searchNewMovie()
+  //     navigate('/search');
+	// 	}
+	// };
+
   const searchButton = async() => {
 		if (inputField.length !== 0) {
-			await formatInputReturn();
-			await searchNewMovie()
+			await byActorName(inputField);
       navigate('/search');
 		}
 	};
@@ -45,6 +52,22 @@ export default function Navbar() {
     }
   }
   
+  const formatNameFunction = (name) => {
+		const newValue = name.split(' ').join('+');
+		return newValue;
+	};
+
+  const byActorName = async(actorName) => {
+    const formatName = formatNameFunction(actorName);
+    const url = findActorName(formatName);
+    const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
+    // console.log(firstFetch)
+    const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
+    setMovieData(secondFetch.results);
+
+    return firstFetch;
+  };
+
   const verifyLogin =  () => {
     if (username) {
       setRenderLogin(true);
