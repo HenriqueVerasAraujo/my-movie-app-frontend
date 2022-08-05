@@ -34,6 +34,8 @@ export default function ReviewCard({ review, fetchFunction }) {
         const ckeckIfLiked = review.likes.some((like) => like.userId === userIdFromLocal);
         if (ckeckIfLiked) {
             setLiked(true);
+        } else {
+            setLiked(false);
         }
     }
 
@@ -44,7 +46,7 @@ export default function ReviewCard({ review, fetchFunction }) {
             return alert('You need to be logged in to like reviews!');
         };
         await fetchFunction();
-        return setLiked((prev) => !prev);
+        // return setLiked((prev) => !prev);
     }
 
     useEffect(() => {
@@ -54,7 +56,6 @@ export default function ReviewCard({ review, fetchFunction }) {
 
     useEffect(() => {
         checkLiked();
-        console.log('here');
     }, [review])
 
 
@@ -113,12 +114,12 @@ export default function ReviewCard({ review, fetchFunction }) {
                             <ThumbUpIcon className='h-7 w-7 text-zinc-700' />
                         </button>
                         )}
-                    {/* <h1 className='text-xl font-medium text-zinc-700'>{review.comments.length}</h1> */}
+                    <h1 className='text-xl font-medium ml-1 text-zinc-700'>{review.likes.length}</h1>
                 </div>
 
                 <div onClick={redirect} className='flex h-full w-auto items-center hover:cursor-pointer pr-10'>
                     <AnnotationIcon className='h-7 w-7 text-zinc-700' />
-                    <h1 className='text-xl font-medium text-zinc-700'>{review.comments.length}</h1>
+                    <h1 className='text-xl font-medium ml-1 text-zinc-700'>{review.comments.length}</h1>
                 </div>
             </div>
         </div>
