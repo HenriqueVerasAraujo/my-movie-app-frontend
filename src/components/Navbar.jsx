@@ -8,6 +8,7 @@ export default function Navbar() {
   const [inputField, setInputField] = useState('');
   const { movieData, setMovieData, username, setUsername } = useContext(myContext);
   const [renderLogin, setRenderLogin] = useState(false);
+  const [searchType, setSearchType] = useState('by movie title');
   const navigate = useNavigate();
 
   const fetchData = async(link) => {
@@ -19,16 +20,22 @@ export default function Navbar() {
 	const inputFunction = ({ target }) => {
 		setInputField(target.value);
 	};
+  
+  const enterSite = () => {
+    const checkUsername = localStorage.getItem('username');
+    if (checkUsername) {
+      setUsername(checkUsername);
+    }
+  }
+  // const formatInputReturn = async() => {
+	// 	const newValue = inputField.split(' ').join('+');
+	// 	await setInputField(newValue);
+	// };
 
-  const formatInputReturn = async() => {
-		const newValue = inputField.split(' ').join('+');
-		await setInputField(newValue);
-	};
-
-  const searchNewMovie = async () => {
-		const newMovieList = `${newSearchMovie}${inputField}`
-		await fetchData(newMovieList)
-	};
+  // const searchNewMovie = async () => {
+	// 	const newMovieList = `${newSearchMovie}${inputField}`
+	// 	await fetchData(newMovieList)
+	// };
 
   // const searchButton = async() => {
 	// 	if (inputField.length !== 0) {
@@ -38,35 +45,42 @@ export default function Navbar() {
 	// 	}
 	// };
 
-  const searchButton = async() => {
-		if (inputField.length !== 0) {
-			await byActorName(inputField);
-      navigate('/search');
-		}
-	};
-
-  const enterSite = () => {
-    const checkUsername = localStorage.getItem('username');
-    if (checkUsername) {
-      setUsername(checkUsername);
-    }
-  }
-  
   const formatNameFunction = (name) => {
-		const newValue = name.split(' ').join('+');
+    const newValue = name.split(' ').join('+');
 		return newValue;
 	};
+  const byMovieTitle = async (movieTitle) => {
+    if (inputField.length !== 0) {
+      const formatTitle = formatNameFunction(movieTitle);
+      const newMovieList = `${newSearchMovie}${formatTitle}`
+      await fetchData(newMovieList);
+    }
+  }  
+  
+  const searchButtonTitle = async() => {
+    if (inputField.length !== 0) {
+      await byMovieTitle(inputField);
+      navigate('/search');
+    }
+  };
 
   const byActorName = async(actorName) => {
     const formatName = formatNameFunction(actorName);
     const url = findActorName(formatName);
     const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
-    // console.log(firstFetch)
     const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
     setMovieData(secondFetch.results);
-
+    
     return firstFetch;
   };
+  
+  const searchButtonPerson = async() => {
+    if (inputField.length !== 0) {
+      await byActorName(inputField);
+      navigate('/search');
+    }
+  };
+
 
   const verifyLogin =  () => {
     if (username) {
@@ -99,7 +113,9 @@ export default function Navbar() {
 
         <div className='w-[60%] flex'>
           <input onChange={inputFunction} className='w-full h-[40px] rounded-l-3xl pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
-          <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>
+          {searchType === 'by movie title' && <button onClick={searchButtonTitle} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>}
+          {searchType === 'by person name' && <button onClick={searchButtonPerson} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>}
+          {/* {searchType === 'by movie genre' && <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>} */}
         </div>
 
           { renderLogin === false ? (
