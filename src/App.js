@@ -7,6 +7,7 @@ import MoviePage from './pages/MoviePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ReviewPage from './pages/ReviewPage';
+import Footer from './components/Footer';
 
 function App() {
   return (

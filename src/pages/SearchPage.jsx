@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import myContext from '../context/MyContext';
 import SingleMovieSearch from '../components/SingleMovieSearch';
+import Footer from '../components/Footer';
 
 export default function SearchPage() {
     const { movieData, setMovieData } = useContext(myContext);
