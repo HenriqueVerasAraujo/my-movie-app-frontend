@@ -109,9 +109,9 @@ export default function Navbar() {
 
         <div className='w-[60%] flex'>
           <form type='submit' className='flex w-full' onSubmit={testSubmit}>
-            <select className='text-zinc-800 text-lg rounded-l-3xl font-medium bg-slate-300 text-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
-              <option className='text-zinc-800 bg-white text-lg' value="by movie title">By movie title</option>
-              <option className='text-zinc-800 bg-white text-lg' value="by person name">By person name</option>
+            <select className='text-zinc-800 text-lg rounded-l-3xl px-1 font-medium bg-slate-300 text-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
+              <option className='text-zinc-800 bg-white text-lg text-center' value="by movie title">By movie title</option>
+              <option className='text-zinc-800 bg-white text-lg text-center' value="by person name">By person name</option>
             </select>
             <input onChange={inputFunction} className='w-full h-[40px] focus:outline-none focus:ring-2 ring-yellow-500 focus:ring-inset text-zinc-700 rounded-r-3xl  font-medium text-lg pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
           </form>
