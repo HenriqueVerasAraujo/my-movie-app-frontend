@@ -91,6 +91,14 @@ export default function Navbar() {
       verifyLogin();
   }, [username]);
 
+
+  const testSubmit = async(e) => {
+    e.preventDefault();
+    if (searchType === 'by person name') {
+      return searchButtonPerson();
+    }
+    return searchButtonTitle();
+  }
   return (
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-10'>
       <div className='w-[95%] h-full flex items-center'>
@@ -100,22 +108,19 @@ export default function Navbar() {
         </div>
 
         <div className='w-[60%] flex'>
-          <form className='flex w-full '>
+          <form type='submit' className='flex w-full' onSubmit={testSubmit}>
             <select className='text-zinc-800 text-lg rounded-l-3xl font-medium bg-slate-300 text-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
               <option className='text-zinc-800 bg-white text-lg' value="by movie title">By movie title</option>
               <option className='text-zinc-800 bg-white text-lg' value="by person name">By person name</option>
             </select>
             <input onChange={inputFunction} className='w-full h-[40px] focus:outline-none focus:ring-2 ring-yellow-500 focus:ring-inset text-zinc-700 rounded-r-3xl  font-medium text-lg pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
           </form>
-          {searchType === 'by movie title' && (
           <button
-            onClick={searchButtonTitle} 
+            onClick={testSubmit} 
             className='-ml-[60px] px-3 pr-5 text-sky-700 rounded-r-3xl' 
             type='button'>
               <SearchIcon className=' h-7 w-7' />
-              </button>)}
-          {searchType === 'by person name' && <button onClick={searchButtonPerson} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>}
-          {/* {searchType === 'by movie genre' && <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>} */}
+              </button>
         </div>
 
           { renderLogin === false ? (
