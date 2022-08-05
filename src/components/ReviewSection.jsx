@@ -55,7 +55,7 @@ export default function ReviewSection({ movieName, movieId }){
             {render ? (
                 allReviews.map((singleReview) => (
                     <div className='mb-6'>
-                        <ReviewCard review={ singleReview }/>
+                        <ReviewCard review={ singleReview } fetchFunction={fetchData}/>
                     </div>
                 ))
             ): (

@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { urlApi } from '../links/movieFilter';
 
-export default function ReviewCard({ review }) {
+export default function ReviewCard({ review, fetchFunction }) {
     const navigate = useNavigate();
     const [renderDelete, setRenderDelete] = useState(false);
+    const [liked, setLiked] = useState(false);
 
     const formatDate = () => {
         const date = `${review.createdAt}`;
@@ -28,13 +29,39 @@ export default function ReviewCard({ review }) {
         return setRenderDelete(false);
     }
 
+    const checkLiked = () => {
+        const userIdFromLocal = Number(localStorage.getItem('id'));
+        const ckeckIfLiked = review.likes.some((like) => like.userId === userIdFromLocal);
+        if (ckeckIfLiked) {
+            setLiked(true);
+        }
+    }
+
+    const likeAndDislike = async() => {
+        const data = {};
+        const check = await axios.post(`${urlApi}/likes/${review.id}`, data, {headers: {token: localStorage.getItem('token')}});
+        if(check.data.errMessage4) {
+            return alert('You need to be logged in to like reviews!');
+        };
+        await fetchFunction();
+        return setLiked((prev) => !prev);
+    }
+
     useEffect(() => {
         checkIfIsUser();
+        checkLiked();
     }, [])
 
+    useEffect(() => {
+        checkLiked();
+        console.log('here');
+    }, [review])
+
+
+
     const deleteFunction = async() => {
-        const deleteReview = await axios.delete(`${urlApi}/reviews/${review.id}`);
-        return deleteReview;
+        await axios.delete(`${urlApi}/reviews/${review.id}`);
+        return window.location.reload();
     }
 
   return (
@@ -75,8 +102,17 @@ export default function ReviewCard({ review }) {
                 <button onClick={deleteFunction} className='p-2 bg-slate-700/0 hover:cursor-default text-white/0 font-bold'>Delete</button>
             )}
             <div className='flex items-center'>
-                <div onClick={redirect} className='flex h-full w-auto items-center hover:cursor-pointer pr-5'>
-                    <ThumbUpIcon className='h-7 w-7 text-zinc-700' />
+                <div className='flex h-full w-auto items-center hover:cursor-pointer pr-5'>
+                    { liked ? (
+                        <button onClick={likeAndDislike} className=''>
+                            <SolidThumb className='h-7 w-7 text-zinc-700' />
+                        </button>
+                        
+                    ) : (
+                        <button onClick={likeAndDislike}>
+                            <ThumbUpIcon className='h-7 w-7 text-zinc-700' />
+                        </button>
+                        )}
                     {/* <h1 className='text-xl font-medium text-zinc-700'>{review.comments.length}</h1> */}
                 </div>
 

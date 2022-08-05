@@ -110,7 +110,7 @@ export default function MoviePage() {
                     </div>
                     {/* REVIEWS AREA */}
                     <div className='w-full bg-white flex justify-center'>
-                        <ReviewSection movieId={id} movieName={movieData[0].title}/>
+                        <ReviewSection movieId={id} movieName={movieData[0].title} />
                     </div>
              </div>
         )}
