@@ -59,10 +59,8 @@ export default function PopUp({ movie, movieId }) {
 
     const scoreInput = ({ target }) => {
         if (target.value === 'N/A') {
-            console.log(score);
             return setScore(target.value);
         }
-        console.log(score);
         return setScore(Number(target.value));
     };
 

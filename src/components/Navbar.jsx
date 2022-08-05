@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 // import SingleMoviePoster from '../components/SingleMoviePoster';
 import { newSearchMovie, findActorName, findMovieByActorId } from '../links/movieFilter'
 import myContext from '../context/MyContext';
+import { SearchIcon } from '@heroicons/react/outline';
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
@@ -20,30 +21,17 @@ export default function Navbar() {
 	const inputFunction = ({ target }) => {
 		setInputField(target.value);
 	};
-  
+
+  const searchTypeInput = ({ target }) => {
+    return setSearchType(target.value);
+  };
+
   const enterSite = () => {
     const checkUsername = localStorage.getItem('username');
     if (checkUsername) {
       setUsername(checkUsername);
     }
   }
-  // const formatInputReturn = async() => {
-	// 	const newValue = inputField.split(' ').join('+');
-	// 	await setInputField(newValue);
-	// };
-
-  // const searchNewMovie = async () => {
-	// 	const newMovieList = `${newSearchMovie}${inputField}`
-	// 	await fetchData(newMovieList)
-	// };
-
-  // const searchButton = async() => {
-	// 	if (inputField.length !== 0) {
-	// 		await formatInputReturn();
-	// 		await searchNewMovie()
-  //     navigate('/search');
-	// 	}
-	// };
 
   const formatNameFunction = (name) => {
     const newValue = name.split(' ').join('+');
@@ -81,12 +69,12 @@ export default function Navbar() {
     }
   };
 
-
   const verifyLogin =  () => {
     if (username) {
       setRenderLogin(true);
     }
   }
+
   const logoutFunction = () => {
     localStorage.clear();
     setRenderLogin(false);
@@ -112,8 +100,20 @@ export default function Navbar() {
         </div>
 
         <div className='w-[60%] flex'>
-          <input onChange={inputFunction} className='w-full h-[40px] rounded-l-3xl pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
-          {searchType === 'by movie title' && <button onClick={searchButtonTitle} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>}
+          <form className='flex w-full '>
+            <select className='text-zinc-800 text-lg rounded-l-3xl font-medium bg-slate-300 text-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
+              <option className='text-zinc-800 bg-white text-lg' value="by movie title">By movie title</option>
+              <option className='text-zinc-800 bg-white text-lg' value="by person name">By person name</option>
+            </select>
+            <input onChange={inputFunction} className='w-full h-[40px] focus:outline-none focus:ring-2 ring-yellow-500 focus:ring-inset text-zinc-700 rounded-r-3xl  font-medium text-lg pl-3' type="text" placeholder='Search a movie by title, actor/actress or genre...' />
+          </form>
+          {searchType === 'by movie title' && (
+          <button
+            onClick={searchButtonTitle} 
+            className='-ml-[60px] px-3 pr-5 text-sky-700 rounded-r-3xl' 
+            type='button'>
+              <SearchIcon className=' h-7 w-7' />
+              </button>)}
           {searchType === 'by person name' && <button onClick={searchButtonPerson} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>}
           {/* {searchType === 'by movie genre' && <button onClick={searchButton} className='flex justify-center items-center w-[70px] h-[40px] rounded-r-3xl bg-sky-900 p-3 px-10 text-amber-50 font-bold uppercase' type='button'>Search</button>} */}
         </div>
