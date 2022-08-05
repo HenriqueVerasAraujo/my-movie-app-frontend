@@ -17,7 +17,7 @@ export default function Navbar() {
   const fetchData = async(link) => {
 		const allData = await fetch(link);
 		const allDataJson = await allData.json();
-		setMovieData(allDataJson.results);
+		setMovieData(allDataJson);
 	};
 
 	const inputFunction = ({ target }) => {
@@ -63,7 +63,7 @@ export default function Navbar() {
     const url = findActorName(formatName);
     const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
     const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
-    setMovieData(secondFetch.results);
+    setMovieData(secondFetch);
     
     return firstFetch;
   };
@@ -78,7 +78,7 @@ export default function Navbar() {
   const byMovieGenre = async(genreId) => {
     const url = findMovieByGenreId(genreId)
     const firstFetch = await fetch(url).then((response) => response.json());
-    setMovieData(firstFetch.results);
+    setMovieData(firstFetch);
   };
 
   const searchButtonGenre = async() => {
@@ -130,7 +130,7 @@ export default function Navbar() {
       return searchButtonGenre();
     }
   }
-  
+
   return (
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-10'>
       <div className='w-[95%] h-full flex items-center'>

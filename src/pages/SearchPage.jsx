@@ -8,14 +8,14 @@ export default function SearchPage() {
     const [render, setRender] = useState(false);
 
     const renderSearch = () => {
-        if (movieData !== []) {
+        if (movieData.results !== undefined) {
             setRender(true);
         }
     }
 
     useEffect(() => {
         renderSearch();
-    }, [])
+    }, [movieData])
 
   return (
       <div className='w-full h-screen bg-slate-200'>
@@ -24,7 +24,7 @@ export default function SearchPage() {
               <div className='w-[70%] h-auto flex justify-center'>
                 <div className='w-[80%] flex flex-col mt-[50px]'>
                     {render && (
-                        movieData.map((s) => (
+                        movieData.results.map((s) => (
                             <div key={s.id} className='mb-[50px]'>
                                 <SingleMovieSearch movie={s} />
                             </div>

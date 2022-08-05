@@ -9,7 +9,7 @@ export default function MainCastCard({ info }) {
 
   const redirectFunction = async() => {
     const fetchData = await fetch(findMovieByActorId(info.id)).then((response) => response.json());
-    setMovieData(fetchData.results);
+    setMovieData(fetchData);
     navigate('/search');
   };
 
