@@ -5,6 +5,7 @@ import { newSearchMovie, findActorName, findMovieByActorId, findMovieByGenreId }
 import myContext from '../context/MyContext';
 import { SearchIcon } from '@heroicons/react/outline';
 import { genreArray } from '../assets/genresArray';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [renderLogin, setRenderLogin] = useState(false);
   const [searchType, setSearchType] = useState('by movie title');
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const fetchData = async(link) => {
 		const allData = await fetch(link);
@@ -53,8 +55,8 @@ export default function Navbar() {
   
   const searchButtonTitle = async() => {
     if (inputField.length !== 0) {
-      await byMovieTitle(inputField);
-      navigate('/search');
+      setMovieData(!movieData)
+      navigate(`/search?value=${inputField}&page=1&category=${searchType}`);
     }
   };
 

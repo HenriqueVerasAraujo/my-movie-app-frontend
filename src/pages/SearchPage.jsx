@@ -1,21 +1,58 @@
-import React, {useState, useContext, useEffect} from 'react'
-import myContext from '../context/MyContext';
+import React, {useState, useEffect, useContext } from 'react'
+import { useSearchParams } from 'react-router-dom';
 import SingleMovieSearch from '../components/SingleMovieSearch';
-import Footer from '../components/Footer';
+import myContext from '../context/MyContext';
+import { newSearchMovie, findActorName, findMovieByActorId, findMovieByGenreId } from '../links/movieFilter'
 
 export default function SearchPage() {
-    const { movieData, setMovieData } = useContext(myContext);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const { movieData } = useContext(myContext);
+    const [searchData, setSearchData] = useState('');
     const [render, setRender] = useState(false);
 
-    const renderSearch = () => {
-        if (movieData.results !== undefined) {
-            setRender(true);
+    const value = searchParams.get('value');
+    const category = searchParams.get('category');
+    const page = searchParams.get('page');
+
+    const formatNameFunction = (name) => {
+        const newValue = name.split(' ').join('+');
+            return newValue;
+        };
+        
+        const fetchData = async(link) => {
+            const allData = await fetch(link);
+            const allDataJson = await allData.json();
+            setSearchData(allDataJson);
+        };
+
+    const mainFunction = async () => {
+        if (category === 'by movie genre') {
+            return
         }
-    }
+
+        if (category === 'by person name') {
+            return
+        }
+        const newMovieList = `${newSearchMovie}${formatNameFunction(value)}`
+        await fetchData(newMovieList);
+    };
+
+
 
     useEffect(() => {
-        renderSearch();
+        mainFunction();
+    }, [])
+
+    useEffect(() => {
+        mainFunction();
     }, [movieData])
+
+
+    useEffect(() => {
+        if (searchData !== '') {
+            setRender(true);
+        };
+    }, [searchData]);
 
   return (
       <div className='w-full h-screen bg-slate-200'>
@@ -23,8 +60,10 @@ export default function SearchPage() {
           <div className='w-full h-auto bg-slate-200 flex justify-end absolute top-[75px] z-0'>
               <div className='w-[70%] h-auto flex justify-center'>
                 <div className='w-[80%] flex flex-col mt-[50px]'>
+                    {/* <h1>{value}</h1>
+                    <h1>{category}</h1> */}
                     {render && (
-                        movieData.results.map((s) => (
+                        searchData.results.map((s) => (
                             <div key={s.id} className='mb-[50px]'>
                                 <SingleMovieSearch movie={s} />
                             </div>
