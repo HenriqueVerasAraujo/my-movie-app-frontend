@@ -1,46 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react'
-import SingleMoviePoster from '../components/SingleMoviePoster';
-import myContext from '../context/MyContext';
-import { defaultSearchMovie } from '../links/movieFilter';
-import Slider from '../components/common/Slider';
-import { SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import React from 'react'
+import MainHero from '../components/mainPageComponents/MainHero';
+import MainTrendingSection from '../components/mainPageComponents/MainTrendingSection/MainTrendingSection';
+import PopularReviews from '../components/mainPageComponents/PopularReviews';
+import InTheatersNow from '../components/mainPageComponents/InTheatersNowSection/InTheatersNow';
 
 export default function Home() {
-	// const { movieData, setMovieData } = useContext(myContext);
-	// const [render, setRender] = useState(false);
-
-	// const fetchData = async(link) => {
-	// 	const allData = await fetch(link);
-	// 	const allDataJson = await allData.json();
-	// 	setMovieData(allDataJson.results);
-	// };
-
-	// const settings = {
-	// 	slidesPerView: 6,
-	// 	spaceBetween: 0,
-	// 	navigation: true
-	// }
-
-	// useEffect(() => {
-	// 	fetchData(defaultSearchMovie);
-	// 	setRender(true);
-	// }, []);
-
   return (
-	  <div className='w-[50%]'>
-		{/* <Slider settings={settings} >
-		{render && (
-			movieData.map((s) => (
-				<div key={s.id}>
-					<SwiperSlide key={s.title} >
-						<SingleMoviePoster movie={s} />
-					</SwiperSlide>
-				</div>
-			))
-		)}
-		</Slider> */}
+	  <div className='w-full h-auto bg-slate-200 absolute flex justify-center '>
+		  <div className='w-full h-auto flex justify-center bg-slate-200'>
+			<div className='w-full md:w-[70%] h-auto top-[75px] bg-slate-200'>
+				<MainHero />
+				<MainTrendingSection />
+				<InTheatersNow/>
+				{/* <PopularReviews /> */}
+				{/* <popularMovies /> */}
+			</div>
+		  </div>
 	  </div>
   );
 };

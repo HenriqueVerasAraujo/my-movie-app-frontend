@@ -1,2 +1,31 @@
 .swiper-button-prev {
+    background-color:rgba(0, 0, 0, 0.5);
+    
+    color: yellow;
+    border-radius: 5px;
+    padding: 3em 2em;
+}
+
+.swiper-button-prev:hover {
+    background-color:rgba(0, 0, 0, 0.8);
+    
+    color: yellow;
+    border-radius: 5px;
+    padding: 3em 2em;
+}
+
+.swiper-button-next {
+    background-color:rgba(0, 0, 0, 0.5);
+    
+    color: yellow;
+    border-radius: 5px;
+    padding: 3em 2em;
+}
+
+.swiper-button-next:hover {
+    background-color:rgba(0, 0, 0, 0.8);
+    
+    color: yellow;
+    border-radius: 5px;
+    padding: 3em 2em;
 }

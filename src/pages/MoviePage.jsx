@@ -105,11 +105,11 @@ export default function MoviePage() {
                         <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
                     </div>
                     {/* MAIN CAST SECTION */}
-                    <div className='w-full bg-white flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
                         <MainCastSection actorInfo={movieData[1]}/>
                     </div>
                     {/* REVIEWS AREA */}
-                    <div className='w-full bg-white flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
                     </div>
              </div>

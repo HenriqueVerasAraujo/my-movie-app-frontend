@@ -42,7 +42,7 @@ export default function ReviewSection({ movieName, movieId }){
   return (
         <div className='w-[80%] h-auto flex flex-col px-10 mt-10'>
             <div className='text-3xl'>
-                <h1 className='flex'>Users reviews for <h1 className='text-sky-700 ml-2'>{ movieName }</h1></h1>
+                <h1 className='flex text-zinc-700'>Users reviews for <h1 className='text-sky-700 ml-2'>{ movieName }</h1></h1>
             </div>
             {render && (
                 <div className='w-[70%] flex justify-center mt-6'>

@@ -9,25 +9,23 @@ export default function SingleMovieSearch({ movie }) {
 
   const navigateMovie = () => {
     return navigate(`/movie/${movie.id}`);
-  }
+  };
 
   const releaseDateFormat = () => {
     const date = movie.release_date;
     if (date === null || date === '' || date === undefined) {
         setReleaseDate(`(N/A)`);
-        console.log('here2');
     } else {
-      console.log('here');
       const newDate = date.slice(0, 4);
       setReleaseDate(`(${ newDate })`);
     }
-  }
+  };
 
   const checkIfExists = () => {
     if (movie.poster_path === null) {
       movie.overview = 'not render'
     }
-  }
+  };
 
   useEffect(() => {
     releaseDateFormat();
