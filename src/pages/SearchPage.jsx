@@ -27,7 +27,9 @@ export default function SearchPage() {
 
     const mainFunction = async () => {
         if (category === 'by movie genre') {
-            return
+            const url = findMovieByGenreId(value);
+            const byGenre = await fetch(url).then((response) => response.json());
+            return setSearchData(byGenre);
         }
 
         if (category === 'by person name') {
@@ -37,15 +39,13 @@ export default function SearchPage() {
         await fetchData(newMovieList);
     };
 
-
-
     useEffect(() => {
         mainFunction();
     }, [])
 
     useEffect(() => {
         mainFunction();
-    }, [movieData])
+    }, [movieData, window.location.href])
 
 
     useEffect(() => {

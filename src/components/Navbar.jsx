@@ -45,13 +45,13 @@ export default function Navbar() {
     const newValue = name.split(' ').join('+');
 		return newValue;
 	};
-  const byMovieTitle = async (movieTitle) => {
-    if (inputField.length !== 0) {
-      const formatTitle = formatNameFunction(movieTitle);
-      const newMovieList = `${newSearchMovie}${formatTitle}`
-      await fetchData(newMovieList);
-    }
-  }
+  // const byMovieTitle = async (movieTitle) => {
+  //   if (inputField.length !== 0) {
+  //     const formatTitle = formatNameFunction(movieTitle);
+  //     const newMovieList = `${newSearchMovie}${formatTitle}`
+  //     await fetchData(newMovieList);
+  //   }
+  // }
   
   const searchButtonTitle = async() => {
     if (inputField.length !== 0) {
@@ -77,16 +77,16 @@ export default function Navbar() {
     }
   };
 
-  const byMovieGenre = async(genreId) => {
-    const url = findMovieByGenreId(genreId)
-    const firstFetch = await fetch(url).then((response) => response.json());
-    setMovieData(firstFetch);
-  };
+  // const byMovieGenre = async(genreId) => {
+  //   const url = findMovieByGenreId(genreId)
+  //   const firstFetch = await fetch(url).then((response) => response.json());
+  //   setMovieData(firstFetch);
+  // };
 
   const searchButtonGenre = async() => {
     if (inputField2 !== 999) {
-      await byMovieGenre(inputField2);
-      navigate('/search');
+      setMovieData(!movieData)
+      navigate(`/search?value=${inputField2}&page=1&category=${searchType}`);
     }
   };
 
