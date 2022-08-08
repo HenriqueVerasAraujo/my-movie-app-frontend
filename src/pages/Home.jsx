@@ -7,9 +7,9 @@ import PopularMoviesSection from '../components/mainPageComponents/popularMovies
 
 export default function Home() {
   return (
-	  <div className='w-full h-auto bg-slate-200 absolute flex justify-center '>
+	  <div className='w-full h-auto bg-slate-200 absolute top-[75px] flex justify-center '>
 		  <div className='w-full h-auto flex justify-center bg-slate-200'>
-			<div className='w-full md:w-[70%] h-auto top-[75px] bg-slate-200'>
+			<div className='w-full md:w-[70%] h-auto bg-slate-200'>
 				<MainHero />
 				<MainTrendingSection />
 				<PopularMoviesSection />

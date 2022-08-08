@@ -25,7 +25,7 @@ export default function PopUp({ movie, movieId }) {
         setErrMessage1('');
         setErrMessage2('');
         setErrMessage3('');
-        const data = { title, reviewBody, score, userId, movieId };
+        const data = { title, reviewBody, score, userId, movieId};
         const createReview = await axios
         .post(`${urlApi}/reviews/create/${movieId}`, data, {headers: {token: localStorage.getItem('token')}});
         if (createReview.data.errMessage1) {
@@ -90,7 +90,7 @@ export default function PopUp({ movie, movieId }) {
     }, [title, reviewBody]);
 
   return (
-    <div className='w-full h-screen fixed z-10 bg-black/90 flex justify-center items-center'>
+    <div className='w-full h-screen fixed z-50 bg-black/90 flex justify-center items-center'>
         {render && (
             <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[90%] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
                 <div onClick={() => setPopUp(false)} className='w-full h-auto flex justify-end relative'>
@@ -104,20 +104,19 @@ export default function PopUp({ movie, movieId }) {
                     <form className='flex flex-col'>
                         <div className='flex w-full '>
                             <div className='flex flex-col w-[70%]'>
-                                <label className='text-2xl text-zinc-700' htmlFor="title">Title:</label>
+                                <div className='flex'>
+                                    <label className='text-2xl text-zinc-700' htmlFor="title">Title:</label>
+                                    <h1 className={`text-${color} text-2xl ml-' mb-[7px]`}>({countTitle}/60 characters)</h1>
+                                </div>
                                 <input 
                                 onChange={titleInput} 
                                 className='w-full border-2 border-sky-600 rounded-md text-xl text-zinc-700 p-1' 
                                 id='title' 
                                 type="text" 
                                 placeholder='The headline of your review here...' />
-                                
                                 {errMessage1 !== '' && (
                                     <h1 className='text-red-600 text-lg'>{errMessage1}</h1>
                                 )}
-                            </div>
-                            <div className='flex justify-center items-end '>
-                                <h1 className={`text-${color} text-lg ml-2 mb-[7px]`}>{countTitle}/60 characters</h1>
                             </div>
                         </div>
 
@@ -125,7 +124,6 @@ export default function PopUp({ movie, movieId }) {
                             <div className='flex items-center'>
                                 <label className='text-2xl text-zinc-700' htmlFor="review">Review:</label>
                                 <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characteres)</h1>
-
                             </div>
                             <textarea 
                             className='w-full h-[400px] resize-none flex items-start justify-start text-zinc-700 border-2 border-sky-600 rounded-md text-xl p-1' 

@@ -65,7 +65,7 @@ export default function ReviewPage() {
         <div className='h-auto w-full absolute top-[75px]'>
             <div className='h-full w-full flex justify-end'>
             {/* SIDE */}
-                <div className='w-[20%] h-[93%] fixed left-0 z-10 bg-slate-900'>
+                <div className='w-[20%] h-[93%] fixed left-0 z-10 bg-slate-900 hover:cursor-pointer'>
                     {render && (
                         <div onClick={()=> navigate(`/movie/${movieId}`)} className='w-full h-full relative flex items-center'>
                             <div className='absolute w-full h-full  bg-sky-700/50'></div>

@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Slider from '../../common/Slider'
-import SliderCard from '../MainTrendingSection/SliderCard'
 import { SwiperSlide } from 'swiper/react';
 import { popularMovies } from '../../../links/movieFilter';
 import PopularSliderCard from './PopularSliderCard';
