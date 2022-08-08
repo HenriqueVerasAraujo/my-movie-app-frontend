@@ -1,8 +1,9 @@
 import React from 'react'
 import MainHero from '../components/mainPageComponents/MainHero';
 import MainTrendingSection from '../components/mainPageComponents/MainTrendingSection/MainTrendingSection';
-import PopularReviews from '../components/mainPageComponents/PopularReviews';
 import InTheatersNow from '../components/mainPageComponents/InTheatersNowSection/InTheatersNow';
+import PopularMoviesSection from '../components/mainPageComponents/popularMoviesSection/PopularMovies';
+
 
 export default function Home() {
   return (
@@ -11,9 +12,9 @@ export default function Home() {
 			<div className='w-full md:w-[70%] h-auto top-[75px] bg-slate-200'>
 				<MainHero />
 				<MainTrendingSection />
+				<PopularMoviesSection />
 				<InTheatersNow/>
 				{/* <PopularReviews /> */}
-				{/* <popularMovies /> */}
 			</div>
 		  </div>
 	  </div>
