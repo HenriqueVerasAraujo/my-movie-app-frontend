@@ -112,6 +112,10 @@ export default function MoviePage() {
                     <div className='w-full h-auto bg-slate-200 flex justify-center'>
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
                     </div>
+                     {/* RECOMENDATIONS AREA */}
+                    <div>
+                                        
+                    </div>
              </div>
         )}
         </div>

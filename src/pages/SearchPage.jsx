@@ -33,10 +33,14 @@ export default function SearchPage() {
         }
 
         if (category === 'by person name') {
-            return
+            const formatName = formatNameFunction(value);
+            const url = findActorName(formatName);
+            const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
+            const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
+            return setSearchData(secondFetch);
         }
         const newMovieList = `${newSearchMovie}${formatNameFunction(value)}`
-        await fetchData(newMovieList);
+        return fetchData(newMovieList);
     };
 
     useEffect(() => {
