@@ -7,10 +7,16 @@ export default function MainCastCard({ info }) {
   const navigate = useNavigate();
   const { setMovieData } = useContext(myContext);
 
+  const formatNameFunction = (name) => {
+    const newValue = name.split(' ').join('+');
+        return newValue;
+    };
+
   const redirectFunction = async() => {
+    const nameFormat = formatNameFunction(info.name);
     const fetchData = await fetch(findMovieByActorId(info.id)).then((response) => response.json());
     setMovieData(fetchData);
-    navigate('/search');
+    navigate(`/search?value=${nameFormat}&page=1&category=by+person+name`);
   };
 
   return (
