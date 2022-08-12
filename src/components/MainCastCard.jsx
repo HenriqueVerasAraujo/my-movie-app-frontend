@@ -34,7 +34,7 @@ export default function MainCastCard({ info }) {
               )}
               
             </div>
-            <div className='h-full w-full flex flex-col items-start p-2 bg-neutral-200 rounded-b-md'>
+            <div className='h-full w-full flex flex-col overflow-hidden items-start p-2 bg-neutral-200 rounded-b-md'>
                 <h1 className='font-bold' >{info.name}</h1>
                 <h1 className='opacity-70'>{info.character}</h1>
             </div>

@@ -92,7 +92,7 @@ export default function PopUp({ movie, movieId }) {
   return (
     <div className='w-full h-screen fixed z-50 bg-black/90 flex justify-center items-center'>
         {render && (
-            <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[90%] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
+            <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[80%] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
                 <div onClick={() => setPopUp(false)} className='w-full h-auto flex justify-end relative'>
                     <h1 className='w-auto font-bold text-4xl px-2 py-0 m-3 bg-sky-700 rounded-md text-white border-2 hover:text-sky-700 hover:bg-white/0 border-sky-700 hover:cursor-pointer'>X</h1>
                 </div>
@@ -126,7 +126,7 @@ export default function PopUp({ movie, movieId }) {
                                 <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characteres)</h1>
                             </div>
                             <textarea 
-                            className='w-full h-[400px] resize-none flex items-start justify-start text-zinc-700 border-2 border-sky-600 rounded-md text-xl p-1' 
+                            className='w-full h-[300px] resize-none flex items-start justify-start text-zinc-700 border-2 border-sky-600 rounded-md text-xl p-1' 
                             id='review' 
                             onChange={reviewInput}
                             type="textarea"

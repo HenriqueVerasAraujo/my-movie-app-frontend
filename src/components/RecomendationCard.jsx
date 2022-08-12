@@ -2,11 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function SliderCard({ content }) {
-    console.log(`/movie/${content.id}`)
     const navigate = useNavigate();
 
     const onClickFunction = () => {
-        navigate(`/movie/${content.id}`)
+        navigate(`/movie/${content.id}`);
         window.location.reload();
     }
 
