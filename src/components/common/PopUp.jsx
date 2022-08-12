@@ -92,11 +92,11 @@ export default function PopUp({ movie, movieId }) {
   return (
     <div className='w-full h-screen fixed z-50 bg-black/90 flex justify-center items-center'>
         {render && (
-            <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[80%] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
+            <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[750px] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
                 <div onClick={() => setPopUp(false)} className='w-full h-auto flex justify-end relative'>
                     <h1 className='w-auto font-bold text-4xl px-2 py-0 m-3 bg-sky-700 rounded-md text-white border-2 hover:text-sky-700 hover:bg-white/0 border-sky-700 hover:cursor-pointer'>X</h1>
                 </div>
-                <div className='flex flex-col text-zinc-800  w-[95%]'>
+                <div className='flex flex-col text-zinc-800 w-[95%]'>
                     <h1 className='flex text-3xl'>A review by <h1 className='ml-1 text-sky-700'>{username}.</h1></h1>
                     <h1 className='text-lg flex'>About: <h1 className='ml-1 font-bold'>{movie.title}</h1></h1>
                 </div>
@@ -123,7 +123,7 @@ export default function PopUp({ movie, movieId }) {
                         <div className='flex flex-col w-full mt-8'>
                             <div className='flex items-center'>
                                 <label className='text-2xl text-zinc-700' htmlFor="review">Review:</label>
-                                <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characteres)</h1>
+                                <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characters)</h1>
                             </div>
                             <textarea 
                             className='w-full h-[300px] resize-none flex items-start justify-start text-zinc-700 border-2 border-sky-600 rounded-md text-xl p-1' 
@@ -136,8 +136,11 @@ export default function PopUp({ movie, movieId }) {
                                 <h1 className='text-red-600 text-lg'>{errMessage2}</h1>
                             )}
                         </div>
-                        <div className='w-full absolute bottom-[60px] flex items-center mt-10'>
-                            <label className='text-xl  text-zinc-700 mr-1 font-bold' htmlFor='score'>Final Score:</label>
+
+                    </form>
+                    <div className='w-full h-[100px] flex justify-around items-center'>
+                        <div className='w-auto h-full flex items-center relative'>
+                            <label className='text-xl text-zinc-700 mr-1 font-bold' htmlFor='score'>Final Score:</label>
                             <select onChange={ scoreInput } id='score' className='rounded-md text-xl text-zinc-700 w-min font-bold'>
                                 <option className='text-2xl' value='N/A'>N/A</option>
                                 <option className='text-2xl' value='0'>0</option>
@@ -157,16 +160,16 @@ export default function PopUp({ movie, movieId }) {
                                     <SolidStar className='h-7 w-7 absolute text-yellow-300'/>
                                 </div>
                         </div>
-                    </form>
                                 {errMessage3 !== '' && (
-                                <h1 className='text-red-600 text-lg relative bottom-0'>{errMessage3}</h1>
+                                <h1 className='text-red-600 absolute text-lg z-10 left-10 bottom-[50px]'>{errMessage3}</h1>
                             )}
                     <button
                     onClick={submitFunction}
-                    className='absolute bottom-[50px] right-[150px] px-10 py-3 rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'
+                    className='w-[200px] h-[70px] rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'
                     >
                         SUBMIT REVIEW
                     </button>
+                    </div>
                 </div>
             </div>
         )}
