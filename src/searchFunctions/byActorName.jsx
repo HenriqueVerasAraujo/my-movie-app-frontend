@@ -4,4 +4,4 @@ export default function ByActorName() {
   return (
     <div>byActorName</div>
   )
-}
+};
