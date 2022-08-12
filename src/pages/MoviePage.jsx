@@ -83,7 +83,7 @@ export default function MoviePage() {
                                 <div className='flex mt-2 '>
                                     {genres.map((singleGenre) => (
                                         <div key={singleGenre.name}>
-                                            <GenreButton title={singleGenre.name}/> 
+                                            <GenreButton title={singleGenre.name} id={singleGenre.id}/> 
                                         </div>
                                     ))}
                                 </div>

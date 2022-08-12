@@ -35,7 +35,6 @@ export default function MainCastCard({ info }) {
               <h1 className='font-bold' >{info.name}</h1>
               <h1 className='opacity-70'>{info.character}</h1>
           </div>
-        
       </div>
     </div>
   )
