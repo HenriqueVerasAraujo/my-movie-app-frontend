@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 export default function provider({ children }) {
  // eslint-disable-next-line react-hooks/rules-of-hooks
- const [movieData, setMovieData] = useState([]);
+ const [movieData, setMovieData] = useState(false);
  // eslint-disable-next-line react-hooks/rules-of-hooks
  const [username, setUsername] = useState('');
  // eslint-disable-next-line react-hooks/rules-of-hooks

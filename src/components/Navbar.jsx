@@ -26,7 +26,7 @@ export default function Navbar() {
 
   const genreInputFunction = ({ target }) => {
     return setInputField2(target.value);
-  }
+  };
 
   const searchTypeInput = ({ target }) => {
     return setSearchType(target.value);
@@ -37,54 +37,31 @@ export default function Navbar() {
     if (checkUsername) {
       setUsername(checkUsername);
     }
-  }
+  };
 
   const formatNameFunction = (name) => {
     const newValue = name.split(' ').join('+');
 		return newValue;
 	};
-  const byMovieTitle = async (movieTitle) => {
-    if (inputField.length !== 0) {
-      const formatTitle = formatNameFunction(movieTitle);
-      const newMovieList = `${newSearchMovie}${formatTitle}`
-      await fetchData(newMovieList);
-    }
-  }
-  
+
   const searchButtonTitle = async() => {
     if (inputField.length !== 0) {
-      await byMovieTitle(inputField);
-      navigate('/search');
+      setMovieData(!movieData)
+      navigate(`/search?value=${inputField}&page=1&category=${searchType}`);
     }
   };
 
-  const byActorName = async(actorName) => {
-    const formatName = formatNameFunction(actorName);
-    const url = findActorName(formatName);
-    const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
-    const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
-    setMovieData(secondFetch);
-    
-    return firstFetch;
-  };
-  
   const searchButtonPerson = async() => {
     if (inputField.length !== 0) {
-      await byActorName(inputField);
-      navigate('/search');
+      setMovieData(!movieData)
+      navigate(`/search?value=${inputField}&page=1&category=${searchType}`);
     }
-  };
-
-  const byMovieGenre = async(genreId) => {
-    const url = findMovieByGenreId(genreId)
-    const firstFetch = await fetch(url).then((response) => response.json());
-    setMovieData(firstFetch);
   };
 
   const searchButtonGenre = async() => {
     if (inputField2 !== 999) {
-      await byMovieGenre(inputField2);
-      navigate('/search');
+      setMovieData(!movieData)
+      navigate(`/search?value=${inputField2}&page=1&category=${searchType}`);
     }
   };
 
@@ -92,7 +69,7 @@ export default function Navbar() {
     if (username) {
       setRenderLogin(true);
     }
-  }
+  };
 
   const logoutFunction = () => {
     localStorage.clear();
@@ -129,7 +106,7 @@ export default function Navbar() {
       if (searchType === 'by movie genre') {
       return searchButtonGenre();
     }
-  }
+  };
 
   return (
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-20'>
@@ -184,4 +161,4 @@ export default function Navbar() {
       </div>
     </div>
   )
-}
+};
