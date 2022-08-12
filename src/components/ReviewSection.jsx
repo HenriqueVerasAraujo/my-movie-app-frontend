@@ -42,21 +42,19 @@ export default function ReviewSection({ movieName, movieId }){
   return (
         <div className='w-[80%] h-auto flex flex-col px-10 mt-10'>
             <div className='text-3xl'>
-                <h1 className='flex text-zinc-700'>Users reviews for <h1 className='text-sky-700 ml-2'>{ movieName }</h1></h1>
+                <h1 className='flex font-bold text-zinc-700'>Users reviews for <h1 className='text-sky-700 ml-2'>{ movieName }</h1></h1>
             </div>
             {render && (
-                <div className='w-[70%] flex justify-center mt-6'>
-                        <div onClick={openPopUp} className='bg-sky-700 py-2 w-full flex justify-center items-center hover:cursor-pointer rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:bg-blue-600  hover:brightness-125'>
+                <div className='w-full flex justify-center mt-6'>
+                        <div onClick={openPopUp} className='bg-sky-700 py-2 w-[70%] flex justify-center items-center hover:cursor-pointer rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:bg-blue-600  hover:brightness-125'>
                             <h1 className='text-2xl font-medium opacity-80 text-white'>Do you want to create a review for this movie? Click here. </h1>
                         </div>
                     </div>
             )}
-            <div className='mt-7'>
+            <div className='mt-7 w-full flex flex-col items-center'>
             {render ? (
                 allReviews.map((singleReview) => (
-                    <div className='mb-6'>
                         <ReviewCard review={ singleReview } fetchFunction={fetchData}/>
-                    </div>
                 ))
             ): (
                 <div className='w-full flex justify-center mt-6'>

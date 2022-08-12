@@ -2,10 +2,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function SliderCard({ content }) {
-    console.log(`/movie/${content.id}`)
     const navigate = useNavigate();
+
+    const onClickFunction = () => {
+        navigate(`/movie/${content.id}`);
+        window.location.reload();
+    }
+
   return (
-    <div onClick={() => navigate(`/movie/${content.id}`)} className='h-[440px] w-auto flex justify-center items-center hover:-translate-y-3 duration-200 ease-in-out'>
+    <div onClick={onClickFunction} className='h-[440px] w-auto flex justify-center items-center hover:-translate-y-3 duration-200 ease-in-out'>
         <div className='h-[400px] w-[187px] flex flex-col justify-start items-center rounded-md
     relative hover:cursor-pointer border-2 border-zinc-400 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
             <div className='h-[70%] w-full flex justify-center'>

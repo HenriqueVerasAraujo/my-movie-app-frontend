@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
-import { movieById, movieCastById } from '../links/movieFilter';
+import { movieById, movieCastById, recomendById } from '../links/movieFilter';
 import GenreButton from '../components/heroMovie/GenreButton';
 import ScoreTag from '../components/heroMovie/ScoreTag';
 import BudgetTag from '../components/heroMovie/BudgetTag';
@@ -11,6 +11,7 @@ import { urlApi } from '../links/movieFilter';
 import ReviewSection from '../components/ReviewSection';
 import PopUp from '../components/common/PopUp';
 import myContext from '../context/MyContext';
+import RecomendationMovie from '../components/RecomendationMovie';
 
 
 export default function MoviePage() {
@@ -26,7 +27,8 @@ export default function MoviePage() {
     const fetchData = async() => {
         const movieInfo = movieById(id);
         const castInfo =  movieCastById(id);
-        const prommiseArray = [movieInfo,castInfo];
+        const recomendInfo = recomendById(id);
+        const prommiseArray = [movieInfo,castInfo, recomendInfo];
         const value = await Promise
         .all(prommiseArray.map((url) => fetch(url).then((s) => s.json())));  
         return setMovieData(value);
@@ -49,10 +51,11 @@ export default function MoviePage() {
 
     useEffect(() => {
         if (movieData !== '') {
-            setDate(movieData[0].release_date.slice(0,4))
+            setDate(movieData[0].release_date.slice(0,4));
             setGenres(movieData[0].genres);
             findDirector();
             setRender(true);
+            console.log(movieData);
         }
     }, [movieData])
 
@@ -83,7 +86,7 @@ export default function MoviePage() {
                                 <div className='flex mt-2 '>
                                     {genres.map((singleGenre) => (
                                         <div key={singleGenre.name}>
-                                            <GenreButton title={singleGenre.name}/> 
+                                            <GenreButton title={singleGenre.name} id={singleGenre.id}/> 
                                         </div>
                                     ))}
                                 </div>
@@ -113,8 +116,8 @@ export default function MoviePage() {
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
                     </div>
                      {/* RECOMENDATIONS AREA */}
-                    <div>
-                                        
+                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                      <RecomendationMovie info={movieData[2].results} />                  
                     </div>
              </div>
         )}

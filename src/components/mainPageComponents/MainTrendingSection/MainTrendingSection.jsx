@@ -10,7 +10,6 @@ export default function MainTrendingSection() {
 
     const fetchData = async () => {
       const allData = await fetch(trendingMovies()).then((response) => response.json());
-      console.log(allData.results);
       setTrendingData(allData.results);
     };
 

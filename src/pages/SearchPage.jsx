@@ -58,6 +58,9 @@ export default function SearchPage() {
         };
     }, [searchData]);
 
+    console.log(searchData)
+
+
   return (
       <div className='w-full h-screen bg-slate-200'>
           <div className='w-[30%] h-screen fixed top-[75px] bg-slate-900 z-10'></div>
