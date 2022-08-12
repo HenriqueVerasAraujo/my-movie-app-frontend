@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/links/important.js
+.env
 
 # testing
 /coverage

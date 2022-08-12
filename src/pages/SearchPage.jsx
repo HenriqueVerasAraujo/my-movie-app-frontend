@@ -33,8 +33,11 @@ export default function SearchPage() {
         }
 
         if (category === 'by person name') {
+            console.log(category)
             const formatName = formatNameFunction(value);
             const url = findActorName(formatName);
+            // await fetch(url).then((response) => response.json()).then((response) => response.results[0].id)
+            // .then((response) => console.log(response));
             const firstFetch = await fetch(url).then((response) => response.json()).then((response) => response.results[0].id);
             const secondFetch = await fetch(findMovieByActorId(firstFetch)).then((response) => response.json());
             return setSearchData(secondFetch);
@@ -49,7 +52,7 @@ export default function SearchPage() {
 
     useEffect(() => {
         mainFunction();
-    }, [movieData, window.location.href])
+    }, [movieData])
 
 
     useEffect(() => {
@@ -57,9 +60,6 @@ export default function SearchPage() {
             setRender(true);
         };
     }, [searchData]);
-
-    console.log(searchData)
-
 
   return (
       <div className='w-full h-screen bg-slate-200'>
