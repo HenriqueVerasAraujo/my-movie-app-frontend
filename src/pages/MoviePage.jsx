@@ -55,7 +55,6 @@ export default function MoviePage() {
             setGenres(movieData[0].genres);
             findDirector();
             setRender(true);
-            console.log(movieData);
         }
     }, [movieData])
 
