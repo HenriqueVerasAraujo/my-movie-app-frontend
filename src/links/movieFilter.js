@@ -1,4 +1,3 @@
-
 export const urlApi = 'https://watchables-app.herokuapp.com';
 
 const apiKey = process.env.REACT_APP_KEY

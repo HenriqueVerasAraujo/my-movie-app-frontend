@@ -10,7 +10,6 @@ export default function PopularMoviesSection() {
 
   const fetchData = async () => {
     const allData = await fetch(popularMovies()).then((response) => response.json());
-    console.log(allData.results);
     setInTheaterNow(allData.results);
   };
 

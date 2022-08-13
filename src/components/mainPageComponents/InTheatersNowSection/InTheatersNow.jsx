@@ -10,7 +10,6 @@ export default function InTheatersNow() {
 
   const fetchData = async () => {
     const allData = await fetch(nowPlaying()).then((response) => response.json());
-    console.log(allData.results);
     setInTheaterNow(allData.results);
   };
 
