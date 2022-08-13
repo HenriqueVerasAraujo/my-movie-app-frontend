@@ -19,7 +19,6 @@ export default function ReviewSection({ movieName, movieId }){
 
     const openPopUp = () => {
         const token = localStorage.getItem('token');
-        console.log(token);
         if (!token) {
             return alert('You need to be logged in to post a Review!')
         } else {
