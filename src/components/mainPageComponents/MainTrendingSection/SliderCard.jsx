@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function SliderCard({ content }) {
-    console.log(`/movie/${content.id}`)
     const navigate = useNavigate();
   return (
     <div onClick={() => navigate(`/movie/${content.id}`)} className='h-[440px] w-auto flex justify-center items-center hover:-translate-y-3 duration-200 ease-in-out'>
