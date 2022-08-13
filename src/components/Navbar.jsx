@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
-// import SingleMoviePoster from '../components/SingleMoviePoster';
-import { newSearchMovie, findActorName, findMovieByActorId, findMovieByGenreId } from '../links/movieFilter'
 import myContext from '../context/MyContext';
 import { SearchIcon } from '@heroicons/react/outline';
 import { genreArray } from '../assets/genresArray';
