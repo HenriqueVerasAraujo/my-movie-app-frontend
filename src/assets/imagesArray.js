@@ -8,7 +8,9 @@ const imagesArray = [
     'https://image.tmdb.org/t/p/original/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg'
 ]
 
-export const randomImage = () => {
+const randomImage = () => {
     const randomNumber = Math.round(Math.floor(Math.random() * 7));
     return imagesArray[randomNumber];
-}
+};
+
+export default randomImage;

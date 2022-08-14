@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // export const urlApi = 'https://watchables-app.herokuapp.com';
 export  const urlApi = 'http://localhost:3001';
 

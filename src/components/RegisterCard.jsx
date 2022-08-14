@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { randomImage } from '../assets/imagesArray'
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import  randomImage from '../assets/imagesArray';
 import { urlApi } from '../links/movieFilter';
 
 export default function RegisterCard() {
@@ -52,8 +53,8 @@ export default function RegisterCard() {
   return (
     <div className=' z-10 w-[1100px] h-[700px] mt-8 bg-black flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
         <div className='w-[40%] relative h-full '>
-            <div className=' w-full h-full bg-sky-800 opacity-60 absolute'></div>
-            <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute'></div>
+            <div className=' w-full h-full bg-sky-800 opacity-60 absolute' />
+            <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute' />
             <img className=' object-cover h-full' src={imageUrl} alt="/" />
         </div>
         <div className='w-[60%] h-full bg-white flex flex-col items-center'>
@@ -113,7 +114,7 @@ export default function RegisterCard() {
                 )}
                 <button className='w-[80%] bg-sky-700 rounded-md p-3 mt-10 text-white font-bold text-xl border-2 border-sky-700 hover:bg-white hover:text-sky-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]' 
                  onClick={registerFunction} 
-                 type='buttom'
+                 type='button'
                  >
                     REGISTER NOW
                 </button>

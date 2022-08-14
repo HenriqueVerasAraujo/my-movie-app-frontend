@@ -1,3 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-else-return */
+/* eslint-disable consistent-return */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
 import { urlApi } from '../links/movieFilter';
@@ -7,7 +12,7 @@ import myContext from '../context/MyContext';
 export default function ReviewSection({ movieName, movieId }){ 
     const [allReviews, setAllReviews] = useState([]);
     const [render, setRender] = useState(false);
-    const {popUp, setPopUp } = useContext(myContext);
+    const { setPopUp } = useContext(myContext);
 
     const fetchData = async() => {
         const reviews = await axios.get(`${urlApi}/reviews/${movieId}`);
@@ -22,7 +27,7 @@ export default function ReviewSection({ movieName, movieId }){
         if (!token) {
             return alert('You need to be logged in to post a Review!')
         } else {
-           return setPopUp(true);
+            setPopUp(true);
         }
     }
 
@@ -60,7 +65,7 @@ export default function ReviewSection({ movieName, movieId }){
                     <div className='bg-neutral-200 p-7 flex flex-col justify-center items-center rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
                         <h1 className='text-xl opacity-80 mb-[15px]'>There are no reviews for this movie yet.</h1>
                         <h1 className='text-xl opacity-80 mb-[15px]'>Do you want to create the first one?</h1>
-                        <button onClick={openPopUp} className='bg-sky-700 w-[50%] p-2  font-bold text-white text-2xl rounded-md hover:brightness-150'>Click here</button>
+                        <button onClick={openPopUp} type='button' className='bg-sky-700 w-[50%] p-2  font-bold text-white text-2xl rounded-md hover:brightness-150'>Click here</button>
                     </div>
                 </div>
             )}

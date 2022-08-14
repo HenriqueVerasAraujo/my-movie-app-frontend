@@ -1,12 +1,13 @@
-import myContext from "./MyContext";
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState } from 'react';
+import myContext from './MyContext';
 
 export default function provider({ children }) {
- // eslint-disable-next-line react-hooks/rules-of-hooks
+ 
  const [movieData, setMovieData] = useState(false);
- // eslint-disable-next-line react-hooks/rules-of-hooks
+
  const [username, setUsername] = useState('');
- // eslint-disable-next-line react-hooks/rules-of-hooks
+
  const [popUp, setPopUp] = useState(false);
 
 const contextValue = {

@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable consistent-return */
+/* eslint-disable react/prop-types */
 import React, {useState, useEffect} from 'react'
 import moment from 'moment';
 import { StarIcon, AnnotationIcon, ThumbUpIcon } from '@heroicons/react/outline';
@@ -98,19 +102,19 @@ export default function ReviewCard({ review, fetchFunction }) {
         {/* FOOTER */}
         <div className='w-full h-[60%] flex justify-between bg-neutral-300/50 rounded-b-md'>
             {renderDelete ? (
-                <button onClick={deleteFunction} className='p-2 bg-slate-700 hover:bg-red-700 text-white font-bold rounded-bl-md'>Delete</button>
+                <button onClick={deleteFunction} type='button'className='p-2 bg-slate-700 hover:bg-red-700 text-white font-bold rounded-bl-md'>Delete</button>
             ) : (
-                <button onClick={deleteFunction} className='p-2 bg-slate-700/0 hover:cursor-default text-white/0 font-bold'>Delete</button>
+                <button onClick={deleteFunction} type='button'className='p-2 bg-slate-700/0 hover:cursor-default text-white/0 font-bold'>Delete</button>
             )}
             <div className='flex items-center'>
                 <div className='flex h-full w-auto items-center hover:cursor-pointer pr-5'>
                     { liked ? (
-                        <button onClick={likeAndDislike} className=''>
+                        <button  type='button' onClick={likeAndDislike} className=''>
                             <SolidThumb className='h-7 w-7 text-zinc-700' />
                         </button>
                         
                     ) : (
-                        <button onClick={likeAndDislike}>
+                        <button type='button' onClick={likeAndDislike}>
                             <ThumbUpIcon className='h-7 w-7 text-zinc-700' />
                         </button>
                         )}

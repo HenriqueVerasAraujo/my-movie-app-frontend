@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,9 +11,7 @@ export default function SingleMovieSearch({ movie }) {
   const navigate = useNavigate();
 
 
-  const navigateMovie = () => {
-    return navigate(`/movie/${movie.id}`);
-  };
+  const navigateMovie = () => navigate(`/movie/${movie.id}`);
 
   const releaseDateFormat = () => {
     const date = movie.release_date;

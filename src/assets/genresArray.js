@@ -1,4 +1,4 @@
-export const genreArray = [
+const genreArray = [
     {
         "id": 999,
         "name": "Select a movie genre"
@@ -74,9 +74,11 @@ export const genreArray = [
     {
       "id": 10752,
       "name": "War"
-    },
-    {
-      "id": 37,
-      "name": "Western"
-    }
+  },
+  {
+    "id": 37,
+    "name": "Western"
+  }
 ];
+
+export default genreArray;

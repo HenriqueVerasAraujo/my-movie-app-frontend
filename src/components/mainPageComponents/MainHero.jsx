@@ -1,13 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/button-has-type */
 import React from 'react'
-import background from '../../assets/wallpaperbetter.jpg'
 import { useNavigate } from 'react-router-dom'
+import background from '../../assets/wallpaperbetter.jpg'
 
 export default function MainHero() {
   const navigate = useNavigate();
 
   return (
     <div className='w-full h-[450px] relative'>
-      <div className=' absolute w-full h-full bg-sky-800/40 z-10'></div>
+      <div className=' absolute w-full h-full bg-sky-800/40 z-10' />
       <img className='h-full w-full object-cover absolute blur-[1px] z-0 ' src={background} alt="/" />
       <div className='w-full h-full flex flex-col px-10 py-[60px]'>
         <div className='w-full h-auto flex flex-col z-10'>

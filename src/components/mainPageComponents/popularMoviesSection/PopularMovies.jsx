@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react'
-import Slider from '../../common/Slider'
+/* eslint-disable consistent-return */
+import React, { useState, useEffect } from 'react'
 import { SwiperSlide } from 'swiper/react';
+import Slider from '../../common/Slider'
 import { popularMovies } from '../../../links/movieFilter';
 import PopularSliderCard from './PopularSliderCard';
 
@@ -19,7 +20,7 @@ export default function PopularMoviesSection() {
 
   useEffect(() => {
     if (inTheaterNow !== '') {
-    return setRender(true);
+      return setRender(true);
     };
   },[inTheaterNow]);
 

@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
+/* eslint-disable consistent-return */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { SearchIcon , FilmIcon } from '@heroicons/react/outline';
 import myContext from '../context/MyContext';
-import { SearchIcon } from '@heroicons/react/outline';
-import { genreArray } from '../assets/genresArray';
-import { FilmIcon } from '@heroicons/react/outline'
+import  genreArray from '../assets/genresArray';
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
@@ -13,23 +16,13 @@ export default function Navbar() {
   const [searchType, setSearchType] = useState('by movie title');
   const navigate = useNavigate();
 
-  // const fetchData = async(link) => {
-	// 	const allData = await fetch(link);
-	// 	const allDataJson = await allData.json();
-	// 	setMovieData(allDataJson);
-	// };
-
 	const inputFunction = ({ target }) => {
 		setInputField(target.value);
 	};
 
-  const genreInputFunction = ({ target }) => {
-    return setInputField2(target.value);
-  };
+  const genreInputFunction = ({ target }) => setInputField2(target.value);
 
-  const searchTypeInput = ({ target }) => {
-    return setSearchType(target.value);
-  };
+  const searchTypeInput = ({ target }) => setSearchType(target.value);
 
   const enterSite = () => {
     const checkUsername = localStorage.getItem('username');
@@ -37,11 +30,6 @@ export default function Navbar() {
       setUsername(checkUsername);
     }
   };
-
-  const formatNameFunction = (name) => {
-    const newValue = name.split(' ').join('+');
-		return newValue;
-	};
 
   const searchButtonTitle = async() => {
     if (inputField.length !== 0) {
@@ -90,7 +78,7 @@ export default function Navbar() {
     if (searchType === 'by movie genre') {
       return setInputField('');
     }
-    return (setInputField2(999))
+    return (setInputField2(999));
   }, [searchType]);
 
 
@@ -111,9 +99,9 @@ export default function Navbar() {
     <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-20 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
       <div className='w-[90%] h-full flex items-center justify-between'>
 
-        <div className='flex items-center justify-end w-[20%] h-full'>
-          <FilmIcon className='w-10 h-10 text-amber-50 mr-1' />
-          <h1 onClick={ () => navigate('/') } className='text-4xl font-bold text-amber-50 cursor-pointer '>Watchables</h1>
+        <div onClick={ () => navigate('/') } className='flex items-center justify-end w-[20%] h-full text-amber-50 hover:text-yellow-400'>
+          <FilmIcon className='w-10 h-10 mr-1' />
+          <h1  className='text-4xl font-bold cursor-pointer'>Watchables</h1>
         </div>
 
         <div className='min-w-[50%] flex'>

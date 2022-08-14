@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import yes from '../../assets/yes.png'
 import no from '../../assets/no.png'
