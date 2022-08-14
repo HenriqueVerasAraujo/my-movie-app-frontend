@@ -36,16 +36,16 @@ export default function SingleMovieSearch({ movie }) {
   return (
     <div>
       {render && (
-        <div>
+        <div className=''>
             {movie.overview !== 'not render' && (
-              <div onClick={ navigateMovie } className='flex h-auto rounded-xl w-full bg-slate-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:cursor-pointer'>
-                <div className='w-[20%] overflow-hidden rounded-l-xl'>
+              <div onClick={ navigateMovie } className='flex h-auto w-auto rounded-md bg-slate-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:cursor-pointer hover:brightness-110 hover:translate-x-4 duration-200 ease-in-out'>
+                <div className='w-[20%] overflow-hidden rounded-l-md'>
                     <img className='object-cover h-full' src={`https://image.tmdb.org/t/p/original/${ movie.poster_path }`} alt="Poster not found" />
                 </div>
                 <div className='h-full w-full flex flex-col'>
-                  <div className='flex justify-start items-center w-full h-[20%] rounded-tr-xl bg-sky-600 p-3 pl-7'>
-                      <h1 className='text-xl text-center text-yellow-400 mr-1'>{movie.original_title}</h1>
-                      <h1 className=' text-yellow-500'>{releaseDate}</h1>
+                  <div className='flex justify-start items-center w-full h-[20%] rounded-tr-md bg-sky-600 p-3 pl-7'>
+                      <h1 className='text-xl text-center text-white mr-1'>{movie.original_title}</h1>
+                      <h1 className=' text-white/80'>{releaseDate}</h1>
                   </div>
                   <div className='w-full flex flex-col overflow-hidden'>
                     <div className='flex px-7 py-3 justify-start items-center '>

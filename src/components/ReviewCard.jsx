@@ -66,7 +66,7 @@ export default function ReviewCard({ review, fetchFunction }) {
     }
 
   return (
-    <div className='w-[70%] h-[120px] mb-5 flex flex-col bg-neutral-200  rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:shadow-[10px_10px_20px_0px_rgba(0,0,0,0.3)] hover:-translate-x-2 hover:-translate-y-2 duration-200 ease-in-out'>
+    <div className='w-[70%] h-[120px] mb-5 flex flex-col bg-neutral-200 rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:shadow-[10px_10px_20px_0px_rgba(0,0,0,0.3)] hover:-translate-x-2 hover:-translate-y-2 duration-200 ease-in-out'>
        {/* HEADER */}
         <div className='w-full flex items-center justify-between px-5 h-[25%] rounded-t-md bg-sky-700'>
             <div className='w-[80%] h-full flex justify-start items-center'>

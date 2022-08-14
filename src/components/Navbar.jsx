@@ -108,7 +108,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-20'>
+    <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-20 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
       <div className='w-[90%] h-full flex items-center justify-between'>
 
         <div className='flex items-center justify-end w-[20%] h-full'>
