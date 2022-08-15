@@ -119,6 +119,12 @@ export default function Navbar() {
               <MenuIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
           </button>
         </div>
+        {/* HAMBURGER BUTTON */}
+        <div className='md:hidden absolute top-2 right-5'>
+          <button type='button' onClick={showMenuToggle}>
+              <SearchIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
+          </button>
+        </div>
           {/* HAMBURGER MENU */}
         <div className={`${showMenu} flex-col w-full mt-3 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]`}>
               {renderLogin ? (
