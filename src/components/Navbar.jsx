@@ -12,6 +12,7 @@ import  genreArray from '../assets/genresArray';
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
   const [showMenu, setShowMenu] = useState('hidden');
+  const [showSearchbar, setShowSearchbar] = useState('hidden');
   const [inputField2, setInputField2] = useState(999);
   const [renderLogin, setRenderLogin] = useState(false);
   const [searchType, setSearchType] = useState('by movie title');
@@ -26,8 +27,18 @@ export default function Navbar() {
 
   const searchTypeInput = ({ target }) => setSearchType(target.value);
 
+  const showSearchbarToggle = () => {
+    if (showSearchbar === 'hidden') {
+      setShowMenu('hidden');
+      setShowSearchbar('flex');
+    } else {
+      setShowSearchbar('hidden');
+    }
+  }
+
   const showMenuToggle = () => {
     if (showMenu === 'hidden') {
+      setShowSearchbar('hidden');
       setShowMenu('flex');
     } else {
       setShowMenu('hidden');
@@ -119,12 +130,6 @@ export default function Navbar() {
               <MenuIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
           </button>
         </div>
-        {/* HAMBURGER BUTTON */}
-        <div className='md:hidden absolute top-2 right-5'>
-          <button type='button' onClick={showMenuToggle}>
-              <SearchIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
-          </button>
-        </div>
           {/* HAMBURGER MENU */}
         <div className={`${showMenu} flex-col w-full mt-3 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]`}>
               {renderLogin ? (
@@ -151,6 +156,41 @@ export default function Navbar() {
                 </>
               ) }
         </div>
+          {/* SEARCH BUTTON */}
+          <div className='md:hidden absolute top-2 right-5'>
+            <button type='button' onClick={showSearchbarToggle}>
+                <SearchIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
+            </button>
+          </div>
+          {/* SEARCH BAR MOBILE  */}
+          <div className={`${showSearchbar} flex-col w-full mt-3 items-center bg-sky-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]`}>
+          <div className='w-[95%] flex justify-center p-2'>
+          <form type='submit' className='flex w-full' onSubmit={testSubmit}>
+            <select className='text-zinc-800 text-md rounded-l-md font-medium bg-slate-300 tex-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
+              <option className='text-zinc-800 bg-white text-lg text-center' value="by movie title">By movie title</option>
+              <option className='text-zinc-800 bg-white text-lg text-center' value="by person name">By person name</option>
+              <option className='text-zinc-800 bg-white text-lg text-center' value="by movie genre">By movie genre</option>
+            </select>
+            {searchType !== 'by movie genre' ? (
+              <input onChange={inputFunction} className='w-full h-[40px] focus:outline-none focus:ring-2 ring-yellow-500 focus:ring-inset text-zinc-700 rounded-r-md font-medium text-lg pl-3' type="text" placeholder='Search a movie...' />
+            ) : (
+              <div className='w-full h-full'>
+                <select onChange={genreInputFunction} className='w-full h-[40px] bg-white focus:outline-none focus:ring-2 ring-yellow-500 focus:ring-inset text-zinc-700 rounded-r-md  font-medium text-lg pl-3' name="genreInput" id="genreInput">
+                  {genreArray.map((single) => (
+                    <option value={single.id}>{single.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </form>
+          <button
+            onClick={testSubmit} 
+            className='-ml-[50px] px-3 pr-5rounded-r-3xl' 
+            type='button'>
+              <SearchIcon className=' h-7 w-7' />
+              </button>
+        </div>
+          </div>
         {/* SEARCH BAR WIDE  */}
         <div className='min-w-[50%] hidden md:flex'>
           <form type='submit' className='flex w-full' onSubmit={testSubmit}>
