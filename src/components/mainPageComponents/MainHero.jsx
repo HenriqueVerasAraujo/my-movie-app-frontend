@@ -10,7 +10,7 @@ export default function MainHero() {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   return (
-    <div className='w-full h-full'>
+    <div>
       {windowSize > 760 ? (
           <div className='w-full h-[450px] relative'>
             <div className=' absolute w-full h-full bg-sky-800/40 z-10' />
