@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import background from '../../assets/wallpaperbetter.jpg'
 
@@ -9,6 +8,10 @@ export default function MainHero() {
   const navigate = useNavigate();
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
+  }, []);
+  
   return (
     <div>
       {windowSize > 760 ? (
