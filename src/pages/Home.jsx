@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import MainHero from '../components/mainPageComponents/MainHero';
 import MainTrendingSection from '../components/mainPageComponents/MainTrendingSection/MainTrendingSection';
 import InTheatersNow from '../components/mainPageComponents/InTheatersNowSection/InTheatersNow';

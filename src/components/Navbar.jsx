@@ -86,7 +86,7 @@ export default function Navbar() {
     setShowMenu('hidden');
     navigate('/');
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
       enterSite();
