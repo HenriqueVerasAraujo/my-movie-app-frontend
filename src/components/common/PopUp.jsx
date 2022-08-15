@@ -1,3 +1,8 @@
+/* eslint-disable no-alert */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect, useContext } from 'react'
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
