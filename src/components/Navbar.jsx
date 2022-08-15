@@ -1,19 +1,21 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { SearchIcon , FilmIcon } from '@heroicons/react/outline';
+import { SearchIcon , FilmIcon, MenuIcon } from '@heroicons/react/outline';
 import myContext from '../context/MyContext';
 import  genreArray from '../assets/genresArray';
 
 export default function Navbar() {
   const [inputField, setInputField] = useState('');
+  const [showMenu, setShowMenu] = useState('hidden');
   const [inputField2, setInputField2] = useState(999);
-  const { movieData, setMovieData, username, setUsername } = useContext(myContext);
   const [renderLogin, setRenderLogin] = useState(false);
   const [searchType, setSearchType] = useState('by movie title');
+  const { movieData, setMovieData, username, setUsername } = useContext(myContext);
   const navigate = useNavigate();
 
 	const inputFunction = ({ target }) => {
@@ -23,6 +25,14 @@ export default function Navbar() {
   const genreInputFunction = ({ target }) => setInputField2(target.value);
 
   const searchTypeInput = ({ target }) => setSearchType(target.value);
+
+  const showMenuToggle = () => {
+    if (showMenu === 'hidden') {
+      setShowMenu('flex');
+    } else {
+      setShowMenu('hidden');
+    }
+  };
 
   const enterSite = () => {
     const checkUsername = localStorage.getItem('username');
@@ -62,6 +72,7 @@ export default function Navbar() {
     localStorage.clear();
     setRenderLogin(false);
     setUsername('');
+    setShowMenu('hidden');
     navigate('/');
     window.location.reload();
   }
@@ -96,15 +107,46 @@ export default function Navbar() {
   };
 
   return (
-    <div className='fixed w-full h-[75px] flex justify-center items-center p-3 bg-sky-800 z-20 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
-      <div className='w-[90%] h-full flex items-center justify-between'>
-
-        <div onClick={ () => navigate('/') } className='flex items-center justify-end w-[20%] h-full text-amber-50 hover:text-yellow-400'>
-          <FilmIcon className='w-10 h-10 mr-1' />
-          <h1  className='text-4xl font-bold cursor-pointer'>Watchables</h1>
+    <div className='flex fixed w-full h-[75px] justify-center items-center py-3 md:p-3 bg-sky-800 z-20 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
+      <div className='md:flex w-full h-full md:px-10 relative items-center justify-center md:justify-between bg'>
+        <div onClick={ () => navigate('/') } className='flex items-center justify-center md:justify-end w-full md:w-[20%] h-full text-amber-50 hover:text-yellow-400'>
+          <FilmIcon className='w-10 h-10 md:w-10 md:h-10 mr-1' />
+          <h1  className='text-3xl md:text-4xl font-bold cursor-pointer'>Watchables</h1>
         </div>
-
-        <div className='min-w-[50%] flex'>
+        {/* HAMBURGER BUTTON */}
+        <div className='md:hidden absolute top-2 left-5'>
+          <button type='button' onClick={showMenuToggle}>
+              <MenuIcon className='w-10 h-10 text-amber-50 cursor-pointer'/>
+          </button>
+        </div>
+          {/* HAMBURGER MENU */}
+        <div className={`${showMenu} flex-col w-full mt-3 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]`}>
+              {renderLogin ? (
+                <>
+                  <div className='bg-amber-50 py-2 px-6 border-b-2 border-neutral-200'>
+                    <h1 className='text-2xl font-bold text-sky-700'>{username}'s Page</h1>
+                  </div>
+                  <div className='bg-amber-50 py-2 px-6'>
+                    <h1 onClick={logoutFunction} className='text-2xl font-bold text-sky-700'>LogOut</h1>
+                  </div>
+                </>
+              ): (
+                <>
+                  <div className='bg-amber-50 py-2 px-6 cursor-pointer border-b-2 border-neutral-200'>
+                    <Link to='/login' onClick={() => setShowMenu('hidden')}>
+                      <h1 className='text-2xl font-bold text-sky-700'>Login</h1>
+                    </Link>
+                  </div>
+                  <div className='bg-amber-50 py-2 px-6 cursor-pointer'>
+                    <Link to='/register' onClick={() => setShowMenu('hidden')}>
+                      <h1 className='text-2xl font-bold text-sky-700'>Create Account</h1>
+                    </Link>
+                  </div>
+                </>
+              ) }
+        </div>
+        {/* SEARCH BAR WIDE  */}
+        <div className='min-w-[50%] hidden md:flex'>
           <form type='submit' className='flex w-full' onSubmit={testSubmit}>
             <select className='text-zinc-800 text-lg rounded-l-md px-1 font-medium bg-slate-300 text-center border-r-2 border-zinc-800 hover:brightness-110' onChange={searchTypeInput} name="searchType" id="searchType">
               <option className='text-zinc-800 bg-white text-lg text-center' value="by movie title">By movie title</option>
@@ -130,9 +172,9 @@ export default function Navbar() {
               <SearchIcon className=' h-7 w-7' />
               </button>
         </div>
-
+          {/* MENU WIDE  */}
           { renderLogin === false ? (
-            <div className='w-auto h-full flex items-center justify-end'>
+            <div className='w-auto h-full hidden md:flex items-center justify-end'>
               <Link to='/login'>
                 <h1 className='text-2xl font-bold text-amber-50 hover:text-yellow-300 mr-10 cursor-pointer'>Log In</h1>
               </Link>
@@ -141,7 +183,7 @@ export default function Navbar() {
               </Link>
             </div>
           ) : (
-            <div className='w-auto h-full flex items-center justify-end'>
+            <div className='w-auto h-full hidden md:flex items-center justify-end'>
                 <h1 className='text-2xl font-bold text-amber-50 mr-10'>{username}</h1>
                 <h1 onClick={logoutFunction} className='text-2xl font-bold text-amber-50 hover:text-yellow-300 cursor-pointer'>Log Out</h1>
           </div>
