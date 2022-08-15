@@ -14,7 +14,6 @@ export default function Home() {
 				<MainTrendingSection />
 				<PopularMoviesSection />
 				<InTheatersNow/>
-				{/* <PopularReviews /> */}
 			</div>
 		  </div>
 	  </div>

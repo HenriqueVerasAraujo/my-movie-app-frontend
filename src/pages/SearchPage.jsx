@@ -1,20 +1,22 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
 import React, {useState, useEffect, useContext } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import SingleMovieSearch from '../components/SingleMovieSearch';
 import myContext from '../context/MyContext';
 import { newSearchMovie, findActorName, findMovieByActorId, findMovieByGenreId } from '../links/movieFilter'
-import { genreArray } from '../assets/genresArray';
+import  genreArray  from '../assets/genresArray';
 
 export default function SearchPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const { movieData } = useContext(myContext);
     const [searchData, setSearchData] = useState('');
     const [render, setRender] = useState(false);
-    const [imgUrl, setImgUrl] = useSearchParams('');
+
 
     const value = searchParams.get('value');
     const category = searchParams.get('category');
-    const page = searchParams.get('page');
+
 
     const findCategoryName = (number) => {
         const categoryName = genreArray.find((single) => Number(single.id) === Number(number));
@@ -103,8 +105,8 @@ export default function SearchPage() {
               {render && (
                 <img className='absolute h-full object-cover z-0' src={getUrlImage()} alt="/" /> 
               )}
-               <div className='bg-sky-700/50 w-full h-full absolute z-0'></div>
-               <div className='bg-slate-800/80 w-full h-full absolute z-0'></div>
+               <div className='bg-sky-700/50 w-full h-full absolute z-0' />
+               <div className='bg-slate-800/80 w-full h-full absolute z-0' />
               </div>
           </div>
           <div className='w-full h-auto bg-slate-200 flex justify-end absolute top-[75px] z-0'>

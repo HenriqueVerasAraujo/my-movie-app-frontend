@@ -1,13 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
-import { movieById, movieCastById, recomendById } from '../links/movieFilter';
+import axios from 'axios';
+import { movieById, movieCastById, recomendById , urlApi } from '../links/movieFilter';
 import GenreButton from '../components/heroMovie/GenreButton';
 import ScoreTag from '../components/heroMovie/ScoreTag';
 import BudgetTag from '../components/heroMovie/BudgetTag';
 import BackGroundCast from '../components/heroMovie/BackGroundCast';
 import MainCastSection from '../components/MainCastSection';
-import axios from 'axios';
-import { urlApi } from '../links/movieFilter';
 import ReviewSection from '../components/ReviewSection';
 import PopUp from '../components/common/PopUp';
 import myContext from '../context/MyContext';
@@ -21,7 +21,7 @@ export default function MoviePage() {
     const [genres, setGenres] =useState(['']);
     const [render, setRender] = useState(false);
     const [reviews, setReviews] = useState(['']);
-    const { popUp, setPopUp } = useContext(myContext);
+    const { popUp } = useContext(myContext);
     const { id } = useParams();
 
     const fetchData = async() => {
@@ -102,8 +102,8 @@ export default function MoviePage() {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full h-[550px] opacity-60 absolute bg-sky-800'></div>
-                        <div className='w-full h-[50%] absolute mt-[275px] bg-gradient-to-b from-transparent to-black'></div>
+                        <div className='w-full h-[550px] opacity-60 absolute bg-sky-800' />
+                        <div className='w-full h-[50%] absolute mt-[275px] bg-gradient-to-b from-transparent to-black' />
                         <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
                     </div>
                     {/* MAIN CAST SECTION */}

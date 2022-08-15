@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { urlApi } from '../links/movieFilter';
-import { useParams } from 'react-router-dom';
-import { movieById } from '../links/movieFilter';
+import { useParams , useNavigate } from 'react-router-dom';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
+import { movieById , urlApi } from '../links/movieFilter';
 import CommentCard from '../components/CommentCard';
-import { useNavigate } from 'react-router-dom';
 
 export default function ReviewPage() {
     const navigate = useNavigate();
@@ -35,15 +37,15 @@ export default function ReviewPage() {
         setErrMessage4('');
         setErrMessage1('');
         const data = { commentBody: input }
-        const createComment = await axios
+        const comment = await axios
         .post(`${urlApi}/comments/create/${id}`, 
         data,
         {headers: {token: localStorage.getItem('token')}});
-        if (createComment.data.errMessage4) {
+        if (comment.data.errMessage4) {
             return setErrMessage4('You need to be logged in to create a comment!');
         }
-        if (createComment.data.errMessage1) {
-            return setErrMessage4(createComment.data.errMessage1);
+        if (comment.data.errMessage1) {
+            return setErrMessage4(comment.data.errMessage1);
         }
         setRender(false);
         await fetchData();
@@ -68,9 +70,9 @@ export default function ReviewPage() {
                 <div className='w-[20%] h-[93%] fixed left-0 z-10 bg-slate-900 hover:cursor-pointer'>
                     {render && (
                         <div onClick={()=> navigate(`/movie/${movieId}`)} className='w-full h-full relative flex items-center'>
-                            <div className='absolute w-full h-full  bg-sky-700/50'></div>
-                            <div className='absolute w-full h-[40%] top-0 bg-gradient-to-b from-black to-transparent'></div>
-                            <div className='absolute w-full h-[40%] bottom-0 bg-gradient-to-t from-black to-transparent'></div>
+                            <div className='absolute w-full h-full  bg-sky-700/50' />
+                            <div className='absolute w-full h-[40%] top-0 bg-gradient-to-b from-black to-transparent' />
+                            <div className='absolute w-full h-[40%] bottom-0 bg-gradient-to-t from-black to-transparent' />
                             <img className='h-full w-full object-cover' src={`https://image.tmdb.org/t/p/original${movieInfo.poster_path}`} alt="/" />
                         </div>
                     )}
@@ -110,10 +112,10 @@ export default function ReviewPage() {
                                 <div className='w-full h-auto'>
                                     <form>
                                         <label className='text-xl text-zinc-700' htmlFor="comment ">Create a new Comment:</label>
-                                        <textarea onChange={textInput} className='w-full h-[70px] rounded-md mt-1 resize-none border-2 border-sky-700' name="comment" id="comment "></textarea>
+                                        <textarea onChange={textInput} className='w-full h-[70px] rounded-md mt-1 resize-none border-2 border-sky-700' name="comment" id="comment " />
                                     </form>
                                     <div className='flex mb-5 items-center'>
-                                        <button className='text-lg mx-3  mofont-bold p-2 bg-sky-700 text-white rounded-md border-2 border-sky-700 hover:brightness-125' type='button ' onClick={createComment}>Send</button>
+                                        <button type='button' className='text-lg mx-3  mofont-bold p-2 bg-sky-700 text-white rounded-md border-2 border-sky-700 hover:brightness-125' onClick={createComment}>Send</button>
                                         {errMessage4 !== '' && (
                                             <h1 className='text-red-600'>{errMessage4}</h1>
                                         )}

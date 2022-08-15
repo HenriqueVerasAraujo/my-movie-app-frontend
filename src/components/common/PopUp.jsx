@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import  { urlApi } from '../../links/movieFilter';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStar } from '@heroicons/react/solid';
 import axios from 'axios';
+import  { urlApi } from '../../links/movieFilter';
 import myContext from '../../context/MyContext';
 
 export default function PopUp({ movie, movieId }) {
@@ -164,6 +164,7 @@ export default function PopUp({ movie, movieId }) {
                                 <h1 className='text-red-600 absolute text-lg z-10 left-10 bottom-[50px]'>{errMessage3}</h1>
                             )}
                     <button
+                    type='button'
                     onClick={submitFunction}
                     className='w-[200px] h-[70px] rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'
                     >

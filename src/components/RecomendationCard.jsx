@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,6 +12,7 @@ export default function SliderCard({ content }) {
     }
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div onClick={onClickFunction} className='h-[440px] w-auto flex justify-center items-center hover:-translate-y-3 duration-200 ease-in-out'>
         <div className='h-[400px] w-[187px] flex flex-col justify-start items-center rounded-md
     relative hover:cursor-pointer border-2 border-zinc-400 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>

@@ -1,12 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+/* eslint-disable consistent-return */
+import React, { useState, useEffect } from 'react'
+import { SwiperSlide } from 'swiper/react';
 import Slider from '../../common/Slider'
 import SliderCard from '../MainTrendingSection/SliderCard'
-import { SwiperSlide } from 'swiper/react';
 import { nowPlaying } from '../../../links/movieFilter';
 
 export default function InTheatersNow() {
-  const [inTheaterNow, setInTheaterNow] = useState('');
   const [render, setRender] = useState(false);
+  const [inTheaterNow, setInTheaterNow] = useState('');
 
   const fetchData = async () => {
     const allData = await fetch(nowPlaying()).then((response) => response.json());
@@ -19,7 +20,7 @@ export default function InTheatersNow() {
 
   useEffect(() => {
     if (inTheaterNow !== '') {
-    return setRender(true);
+      return setRender(true);
     };
   },[inTheaterNow]);
 

@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from 'react'
 import { SwiperSlide } from 'swiper/react';
-import Slider from '../components/common/Slider';
-import MainCastCard from '../components/MainCastCard'
+import Slider from "./common/Slider";
+import MainCastCard from "./MainCastCard"
 
 import 'swiper/css';
 import 'swiper/css/navigation';

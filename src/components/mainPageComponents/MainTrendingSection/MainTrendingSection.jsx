@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react'
+/* eslint-disable consistent-return */
+import React, { useState, useEffect } from 'react'
+import { SwiperSlide } from 'swiper/react';
 import Slider from '../../common/Slider'
 import SliderCard from './SliderCard';
-import { SwiperSlide } from 'swiper/react';
 import { trendingMovies } from '../../../links/movieFilter';
 
 export default function MainTrendingSection() {

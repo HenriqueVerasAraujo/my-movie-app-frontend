@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Swiper } from 'swiper/react';
 import 'swiper/css';

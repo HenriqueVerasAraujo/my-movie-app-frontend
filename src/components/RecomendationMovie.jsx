@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react'
+import { SwiperSlide } from 'swiper/react';
 import Slider from './common/Slider';
 import RecomendationCard from './RecomendationCard'
-import { SwiperSlide } from 'swiper/react';
 
 export default function RecomendationMovie({ info }) {
     const [render, setRender] = useState(false);

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 
 
@@ -5,6 +6,7 @@ export default function BudgetTag({ cost, back }) {
   const [costValue, setCostValue] = useState('N/A');
   const [backValue, setBackValue] = useState('N/A');
 
+  // eslint-disable-next-line consistent-return
   const formatValue = (value) => {
     const original = value;
 
@@ -13,8 +15,8 @@ export default function BudgetTag({ cost, back }) {
       return `${newValue} Thousand Dollars`
     }
     if (original.toString().length >= 10 ) {
-    const newValue = (original/1000000000).toFixed(2);
-    return `${newValue} Billion Dollars`
+      const newValue = (original/1000000000).toFixed(2);
+      return `${newValue} Billion Dollars`
   }
     if (original.toString().length > 7 || original.toString().length < 9) {
       const newValue = (original/1000000).toFixed(0);
