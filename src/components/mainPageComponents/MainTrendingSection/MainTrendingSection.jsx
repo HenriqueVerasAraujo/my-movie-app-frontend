@@ -33,14 +33,16 @@ export default function MainTrendingSection() {
       slidesPerView: 6,
       spaceBetween: 0,
       navigation: true,
-      loop: true
+      loop: true,
+      centeredSlides: true,
     };
 
     const settings2 = {
-      slidesPerView: 3,
+      slidesPerView: 2.2,
       spaceBetween: 3,
-      navigation: false,
-      loop: true
+      navigation: true,
+      loop: true,
+      centeredSlides: true,
     };
 
   return (
