@@ -32,11 +32,11 @@ export default function PopularMoviesSection() {
     }
 
 return (
-    <div className='w-full h-auto '>
+    <div className='w-full h-auto mt-10 md:mt-0 '>
       {render && (
         <div className='flex flex-col w-full h-auto'>
-          <h1 className='text-zinc-700 font-medium text-3xl mb-5'>Popular Movies</h1>
-          <div className='w-full h-[500px] flex'>
+          <h1 className='text-zinc-700 font-medium text-3xl ml-2 md:ml-0'>Popular Movies</h1>
+          <div className='w-full h-[500px] mt-5 flex'>
             <Slider settings={settings}>
               {inTheaterNow.map((s) => (
                 <SwiperSlide>
