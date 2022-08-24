@@ -9,7 +9,7 @@ import myContext from '../context/MyContext';
 
 export default function LoginCard() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('');
   const [errMessage2, setErrMessage2] = useState('');
   const [errMessage3, setErrMessage3] = useState('');
   const { setUsername } = useContext(myContext);
@@ -50,13 +50,13 @@ export default function LoginCard() {
   };
 
   return (
-    <div className=" z-10 w-[1100px] h-[700px] mt-8 bg-black flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]">
-      <div className="w-[40%] relative h-full ">
+    <div className="z-10 w-full h-full fixed md:absolute top-[75px] md:w-[1100px] md:h-[700px] md:mt-[80px] bg-black flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]">
+      <div className="md:w-[40%] md:relative md:h-full hidden md:flex">
         <div className=" w-full h-full bg-sky-800 opacity-60 absolute" />
         <div className=" w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute" />
         <img className=" object-cover h-full" src={imageUrl} alt="/" />
       </div>
-      <div className="w-[60%] h-full bg-white flex flex-col items-center">
+      <div className="w-full md:w-[60%] h-full bg-white flex flex-col items-center">
         <div className="w-full h-[15%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center">
           <h1 className="text-5xl font-bold text-white">Log In</h1>
         </div>
