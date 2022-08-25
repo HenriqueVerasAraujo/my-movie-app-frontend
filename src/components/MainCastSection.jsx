@@ -20,7 +20,7 @@ export default function MainCastSection({ actorInfo }) {
 	}
 
   const settings2 = {
-		slidesPerView: 2,
+		slidesPerView: 2.3,
 		spaceBetween: -50,
 		navigation: false,
     centeredSlides: true,
