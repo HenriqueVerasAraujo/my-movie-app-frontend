@@ -116,9 +116,9 @@ export default function SearchPage() {
                 <div className='flex flex-col justify-center items-center md:hidden w-full p-5 bg-sky-700 mb-10'>
                     <h1 className='text-white text-2xl font-bold'>Results for:</h1>
                     {category !== 'by movie genre' ? (
-                        <h1 className='text-slate-400 text-3xl italic text-center'>{`"${value}"`}</h1>
+                        <h1 className='text-slate-400 text-3xl italic text-center mb-3'>{`"${value}"`}</h1>
                     ) : (
-                        <h1 className='text-slate-300 text-2xl italic text-center'>{findCategoryName(value)}</h1>
+                        <h1 className='text-slate-300 text-2xl italic text-center mb-3'>{findCategoryName(value)}</h1>
                     )}
                     <h1 className='text-white text-2xl font-bold'>Search method:</h1>
                     <h1 className='text-slate-300 text-2xl italic text-center '>{category}</h1>

@@ -67,7 +67,7 @@ export default function MoviePage() {
          {render && (
              <div>
                  {/* HERO SECTION */}
-                    <div className='w-full h-[550px] bg-black relative flex justify-center'>
+                    {/* <div className='w-full h-[550px] bg-black relative flex justify-center'>
                         <div className='w-[70%] h-full absolute z-10 flex items-center '>
                             <img className='h-[440px] rounded-lg' src={`https://image.tmdb.org/t/p/original${movieData[0].poster_path}`} alt="Movie poster not found" />
                             <div className='w-full h-[80%] flex flex-col  ml-7'>
@@ -105,19 +105,19 @@ export default function MoviePage() {
                         <div className='w-full h-[550px] opacity-60 absolute bg-sky-800' />
                         <div className='w-full h-[50%] absolute mt-[275px] bg-gradient-to-b from-transparent to-black' />
                         <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
-                    </div>
+                    </div> */}
                     {/* MAIN CAST SECTION */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                         <MainCastSection actorInfo={movieData[1]}/>
                     </div>
                     {/* REVIEWS AREA */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    {/* <div className='w-full h-auto bg-slate-200 flex justify-center'>
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
-                    </div>
+                    </div> */}
                      {/* RECOMENDATIONS AREA */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    {/* <div className='w-full h-auto bg-slate-200 flex justify-center'>
                       <RecomendationMovie info={movieData[2].results} />                  
-                    </div>
+                    </div> */}
              </div>
         )}
         </div>
