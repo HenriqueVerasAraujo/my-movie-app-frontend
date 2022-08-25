@@ -51,17 +51,17 @@ export default function RegisterCard() {
 
 
   return (
-    <div className=' z-10 w-[1100px] h-[700px] mt-8 bg-black flex items-center justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
-        <div className='w-[40%] relative h-full '>
+    <div className=' z-10 w-full h-full md:w-[1100px] md:h-[700px] fixed md:absolute top-[75px] bg-black flex items-center md:mt-[80px] justify-between border-1 border-neutral-700 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
+        <div className='w-[40%] relative h-full hidden md:flex'>
             <div className=' w-full h-full bg-sky-800 opacity-60 absolute' />
             <div className=' w-full h-[60%] bg-gradient-to-b  bottom-0 from-transparent to-black absolute' />
             <img className=' object-cover h-full' src={imageUrl} alt="/" />
         </div>
-        <div className='w-[60%] h-full bg-white flex flex-col items-center'>
+        <div className='w-full md:w-[60%] h-full bg-white flex flex-col items-center'>
             <div className='w-full h-[12%] bg-sky-600 border-b-4 border-neutral-800 flex justify-center items-center'>
                     <h1 className='text-5xl font-bold text-white'>Sign Up</h1>
             </div>
-            <div className='w-[85%] h-full  flex flex-col items-center justify-center'>
+            <div className='w-[85%] h-full flex flex-col items-center -mt-[100px] md:mt-0 justify-center'>
                 <form className='flex flex-col w-full h-auto'>
                 <div className='flex flex-col'>
                     <label className='text-xl flex' htmlFor='email' >Email<h1 className='text-black opacity-50'>(must be a valid email):</h1></label>

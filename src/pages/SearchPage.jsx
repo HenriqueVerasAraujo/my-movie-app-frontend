@@ -76,7 +76,7 @@ export default function SearchPage() {
 
   return (
       <div className='w-full h-screen bg-slate-200'>
-          <div className='w-[30%] h-screen fixed top-[75px] bg-slate-900 z-10'>
+          <div className='w-[30%] h-screen hidden md:flex fixed top-[75px] bg-slate-900 z-10'>
               <div className='w-full h-full relative'>
                   <div className='h-full w-full absolute z-50 flex flex-col items-center justify-center break-words px-10'>
                       <div className='w-full break-words flex flex-col items-center mb-[90px]'>
@@ -109,9 +109,20 @@ export default function SearchPage() {
                <div className='bg-slate-800/80 w-full h-full absolute z-0' />
               </div>
           </div>
+         
           <div className='w-full h-auto bg-slate-200 flex justify-end absolute top-[75px] z-0'>
-              <div className='w-[70%] h-auto flex justify-center'>
-                <div className='w-[80%] flex flex-col mt-[50px]'>
+              <div className='w-100% md:w-[70%] h-auto flex justify-center'>
+                <div className='w-[90%] md:w-[80%] flex flex-col mt-[50px]'>
+                <div className='flex flex-col justify-center items-center md:hidden w-full p-5 bg-sky-700 mb-10'>
+                    <h1 className='text-white text-2xl font-bold'>Results for:</h1>
+                    {category !== 'by movie genre' ? (
+                        <h1 className='text-slate-400 text-3xl italic text-center mb-3'>{`"${value}"`}</h1>
+                    ) : (
+                        <h1 className='text-slate-300 text-2xl italic text-center mb-3'>{findCategoryName(value)}</h1>
+                    )}
+                    <h1 className='text-white text-2xl font-bold'>Search method:</h1>
+                    <h1 className='text-slate-300 text-2xl italic text-center '>{category}</h1>
+                </div>
                     {render && (
                         searchData.results.map((s) => (
                             <div key={s.id} className='mb-[50px]'>

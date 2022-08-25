@@ -34,14 +34,14 @@ export default function BudgetTag({ cost, back }) {
   }, []);
 
   return (
-    <div className='text-white text-lg flex flex-col items-center'>
+    <div className='text-white text-lg flex flex-col items-center mr-6 md:mr-0'>
       <div className='mb-7 flex flex-col items-center'>
-        <h1 className='font-bold'>Production cost:</h1>
-        <h1 className='opacity-80'>{costValue}</h1>
+        <h1 className='font-bold text-center'>Production cost:</h1>
+        <h1 className='opacity-80 text-center'>{costValue}</h1>
       </div>
       <div className='flex flex-col items-center'>
-        <h1 className='font-bold'>Revenue:</h1>
-        <h1 className='opacity-80'>{backValue}</h1>
+        <h1 className='font-bold text-center'>Revenue:</h1>
+        <h1 className='opacity-80 text-center'>{backValue}</h1>
       </div>
     </div>
   )

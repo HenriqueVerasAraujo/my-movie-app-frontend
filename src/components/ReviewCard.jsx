@@ -70,12 +70,12 @@ export default function ReviewCard({ review, fetchFunction }) {
     }
 
   return (
-    <div className='w-[70%] h-[120px] mb-5 flex flex-col bg-neutral-200 rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:shadow-[10px_10px_20px_0px_rgba(0,0,0,0.3)] hover:-translate-x-2 hover:-translate-y-2 duration-200 ease-in-out'>
+    <div className='w-[90%] md:w-[70%] h-[120px] mb-5 flex flex-col bg-neutral-200 rounded-md shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)] hover:shadow-[10px_10px_20px_0px_rgba(0,0,0,0.3)] hover:-translate-x-2 hover:-translate-y-2 duration-200 ease-in-out'>
        {/* HEADER */}
         <div className='w-full flex items-center justify-between px-5 h-[25%] rounded-t-md bg-sky-700'>
             <div className='w-[80%] h-full flex justify-start items-center'>
                 <div className='flex mr-2'>
-                    <h1 className='text-white mr-2'>Review by:</h1>
+                    <h1 className='hidden md:flex text-white mr-2'>Review by:</h1>
                     <h1 className='font-bold text-yellow-300'>{review.user.username}</h1>
                 </div>
                 <div>
@@ -83,20 +83,21 @@ export default function ReviewCard({ review, fetchFunction }) {
                 </div>
             </div>
             <div className='w-[20%] flex justify-center'>
-                <h1 className='text-white ml-5'>Review score</h1>
+                <h1 className='hidden md:flex text-white ml-5'>Review score</h1>
+                <h1 className='flex md:hidden text-white ml-3'>Score</h1>
             </div>
         </div>
         {/* BODY */}
         <div onClick={redirect} className=' w-full h-full flex items-center px-5 hover:cursor-pointer'>
             <div className='w-[80%] h-full flex items-center'>
-                <h1 className='text-xl font-medium opacity-70'>{review.title}</h1>
+                <h1 className='text-xl font-medium opacity-70 truncate overflow-x-hidden'>{review.title}</h1>
             </div>
-            <div className='w-[20%] h-full relative flex  justify-center items-center'>
+            <div className='w-[20%] h-full relative flex justify-center items-center'>
                 <div className='relative flex'>
-                    <StarIcon className='h-7 w-7' />
-                    <SolidStar className='h-7 w-7 absolute text-yellow-300'/>
+                    <StarIcon className='h-6 w-6 md:h-7 md:w-7 mr-1 md:mr-0' />
+                    <SolidStar className='h-6 w-6 md:h-7 md:w-7 mr-1 md:mr-0 absolute text-yellow-300'/>
                 </div>
-                <h1 className='font-bold text-3xl opacity-70'>{`${review.score}/10`}</h1>
+                <h1 className='font-bold text-xl md:text-3xl opacity-70'>{`${review.score}/10`}</h1>
             </div>
         </div>
         {/* FOOTER */}

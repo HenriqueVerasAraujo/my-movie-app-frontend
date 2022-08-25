@@ -12,6 +12,7 @@ import ReviewSection from '../components/ReviewSection';
 import PopUp from '../components/common/PopUp';
 import myContext from '../context/MyContext';
 import RecomendationMovie from '../components/RecomendationMovie';
+import HeroSection from '../components/heroMovie/HeroSection';
 
 
 export default function MoviePage() {
@@ -63,11 +64,11 @@ export default function MoviePage() {
         {popUp && (
             <PopUp movie={movieData[0]} movieId={id}/>
         )}
-        <div className='w-full h-auto bg-black flex flex-col absolute top-[75px] z-0'>
+        <div className='w-full h-auto bg-slate-200 flex flex-col absolute top-[75px] z-0'>
          {render && (
              <div>
                  {/* HERO SECTION */}
-                    <div className='w-full h-[550px] bg-black relative flex justify-center'>
+                    {/* <div className='w-full h-[550px] bg-black relative flex justify-center'>
                         <div className='w-[70%] h-full absolute z-10 flex items-center '>
                             <img className='h-[440px] rounded-lg' src={`https://image.tmdb.org/t/p/original${movieData[0].poster_path}`} alt="Movie poster not found" />
                             <div className='w-full h-[80%] flex flex-col  ml-7'>
@@ -102,20 +103,24 @@ export default function MoviePage() {
                                 </div>
                             </div>
                         </div>
+                    
                         <div className='w-full h-[550px] opacity-60 absolute bg-sky-800' />
                         <div className='w-full h-[50%] absolute mt-[275px] bg-gradient-to-b from-transparent to-black' />
                         <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
+                    </div> */}
+                    <div className='w-full h-auto bg-slate-200'>
+                        <HeroSection movieData={movieData} director={director} date={date} genres={genres} />
                     </div>
                     {/* MAIN CAST SECTION */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                         <MainCastSection actorInfo={movieData[1]}/>
                     </div>
                     {/* REVIEWS AREA */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
                     </div>
                      {/* RECOMENDATIONS AREA */}
-                    <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                       <RecomendationMovie info={movieData[2].results} />                  
                     </div>
              </div>

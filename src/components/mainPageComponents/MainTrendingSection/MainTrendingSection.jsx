@@ -68,8 +68,8 @@ export default function MainTrendingSection() {
         <div className='w-full h-auto mt-10'>
           {render && (
             <div className='flex flex-col w-full h-auto'>
-              <h1 className='text-zinc-700 font-medium text-3xl mb-2'>Trending Movies</h1>
-              <div className='w-full h-[460px] flex'>
+              <h1 className='text-zinc-700 font-medium text-3xl ml-2'>Trending Movies</h1>
+              <div className='w-full h-auto flex'>
                 <Slider settings={settings2}>
                   {trendingData.map((s) => (
                     <SwiperSlide>
