@@ -17,7 +17,7 @@ export default function CommentCard({ comment }) {
             <h1 className='text-white opacity-80'>{formatDate()}</h1>
         </div>
         <div>
-            <h1 className='text-lg p-2'>{comment.commentBody}</h1>
+            <h1 className='text-lg p-2 break-words'>{comment.commentBody}</h1>
         </div>
     </div>
   )

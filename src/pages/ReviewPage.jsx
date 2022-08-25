@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -64,10 +65,10 @@ export default function ReviewPage() {
     
   return (
     <div className='w-full h-screen bg-slate-200'>
-        <div className='h-auto w-full absolute top-[75px]'>
+        <div className='h-full md:h-auto w-full absolute top-[75px]'>
             <div className='h-full w-full flex justify-end'>
             {/* SIDE */}
-                <div className='w-[20%] h-[93%] fixed left-0 z-10 bg-slate-900 hover:cursor-pointer'>
+                <div className='w-[20%] h-[93%] hidden md:flex fixed left-0 z-10 bg-slate-900 hover:cursor-pointer'>
                     {render && (
                         <div onClick={()=> navigate(`/movie/${movieId}`)} className='w-full h-full relative flex items-center'>
                             <div className='absolute w-full h-full  bg-sky-700/50' />
@@ -78,18 +79,20 @@ export default function ReviewPage() {
                     )}
                 </div>
             {/* REVIEW  */}
-                <div className='w-[80%] h-auto bg-slate-200 flex flex-col items-center'>
+                <div className='w-full md:w-[80%] h-auto bg-slate-200 flex flex-col items-center'>
                     {render && (
                         // ReviewBody
-                        <div className='w-[97%] h-auto'>
-                            <div className='w-full h-auto mt-4 bg-slate-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
+                        <div className='w-[97%] h-auto flex flex-col items-center'>
+                            <div className='w-[95%] flex justify-center h-auto mt-4 bg-slate-300 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
                                 <div className='flex flex-col text-zinc-800 p-5 w-full'>
                                     <div className='flex w-full justify-between'>
                                         <div>
-                                            <h1 className='flex text-3xl'>A review by <h1 className='ml-1 text-sky-700'>{reviewData.user.username}.</h1></h1>
-                                            <h1 className='text-lg flex'>About: <h1 className='ml-1 font-bold'>{movieInfo.title}</h1></h1>
+                                            <h1 className='flex text-2xl md:text-3xl break-words'>A review by <h1 className='ml-1 text-sky-700 break-words'>{reviewData.user.username}.</h1></h1>
+                                            <h1 className='text-lg hidden md:flex'>About: <h1 className='ml-1 font-bold'>{movieInfo.title}</h1></h1>
+                                            <h1 className='text-lg flex md:hidden mt-2'>About:</h1>
+                                            <h1 className='font-bold flex md:hidden'>{movieInfo.title}</h1>
                                         </div>
-                                        <div className='flex justify-center items-center'>
+                                        <div className='hidden md:flex justify-center items-center'>
                                             <h1 className='text-2xl mr-1'>Final Score:</h1>
                                             <h1 className='text-2xl'>{reviewData.score}/10</h1>
                                             <div className='relative flex mb-1'>
@@ -97,6 +100,14 @@ export default function ReviewPage() {
                                                 <SolidStar className='h-9 w-9 absolute text-yellow-300'/>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className='flex justify-center items-center md:hidden'>
+                                            <h1 className='text-2xl mr-1'>Final Score:</h1>
+                                            <h1 className='text-2xl'>{reviewData.score}/10</h1>
+                                            <div className='relative flex mb-1'>
+                                                <StarIcon className='h-9 w-9' />
+                                                <SolidStar className='h-9 w-9 absolute text-yellow-300'/>
+                                            </div>
                                     </div>
                                     <div className='mt-3 w-full'>
                                         <h1 className='text-lg font-medium text-zinc-800'>{reviewData.title}</h1>
@@ -107,8 +118,8 @@ export default function ReviewPage() {
                                 </div>
                             </div> 
                             {/* Comments  */}
-                            <div className='w-full h-auto mt-[50px] p-5 flex flex-col b'>
-                                <h1 className='text-zinc-700 text-3xl mb-7'>Comments about this review</h1>
+                            <div className='w-full h-auto mt-5 md:mt-[50px] p-5 flex flex-col'>
+                                <h1 className='text-zinc-700 text-2xl font-bold md:text-3xl mb-7'>Comments about this review:</h1>
                                 <div className='w-full h-auto'>
                                     <form>
                                         <label className='text-xl text-zinc-700' htmlFor="comment ">Create a new Comment:</label>
