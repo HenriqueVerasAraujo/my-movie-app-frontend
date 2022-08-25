@@ -97,7 +97,7 @@ export default function PopUp({ movie, movieId }) {
   return (
     <div className='w-full h-screen fixed z-50 bg-black/90 flex justify-center items-center'>
         {render && (
-            <div className='w-[90%] sm:w-[60%] lg:w-[40%] h-[750px] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
+            <div className='w-full  md:w-[90%] sm:w-[60%] lg:w-[40%] h-full md:h-[750px] bg-neutral-100  absolute items-center flex flex-col rounded-md'>
                 <div onClick={() => setPopUp(false)} className='w-full h-auto flex justify-end relative'>
                     <h1 className='w-auto font-bold text-4xl px-2 py-0 m-3 bg-sky-700 rounded-md text-white border-2 hover:text-sky-700 hover:bg-white/0 border-sky-700 hover:cursor-pointer'>X</h1>
                 </div>
@@ -108,10 +108,10 @@ export default function PopUp({ movie, movieId }) {
                 <div className='w-[95%] mt-8'>
                     <form className='flex flex-col'>
                         <div className='flex w-full '>
-                            <div className='flex flex-col w-[70%]'>
+                            <div className='flex flex-col w-[100%] md:w-[70%]'>
                                 <div className='flex'>
                                     <label className='text-2xl text-zinc-700' htmlFor="title">Title:</label>
-                                    <h1 className={`text-${color} text-2xl ml-' mb-[7px]`}>({countTitle}/60 characters)</h1>
+                                    <h1 className={`text-${color} text-2xl ml-1 mb-[7px]`}>({countTitle}/60 characters)</h1>
                                 </div>
                                 <input 
                                 onChange={titleInput} 
@@ -120,12 +120,12 @@ export default function PopUp({ movie, movieId }) {
                                 type="text" 
                                 placeholder='The headline of your review here...' />
                                 {errMessage1 !== '' && (
-                                    <h1 className='text-red-600 text-lg'>{errMessage1}</h1>
+                                    <h1 className='text-red-600 md:text-lg text-sm'>{errMessage1}</h1>
                                 )}
                             </div>
                         </div>
 
-                        <div className='flex flex-col w-full mt-8'>
+                        <div className='flex flex-col w-full mt-4'>
                             <div className='flex items-center'>
                                 <label className='text-2xl text-zinc-700' htmlFor="review">Review:</label>
                                 <h1 className={`text-2xl text-${color2} text-lg ml-1`}>({countReview}/3000 characters)</h1>
@@ -138,12 +138,12 @@ export default function PopUp({ movie, movieId }) {
                             placeholder='Your review here...'
                              />
                             {errMessage2 !== '' && (
-                                <h1 className='text-red-600 text-lg'>{errMessage2}</h1>
+                                <h1 className='text-red-600 text-md md:text-lg'>{errMessage2}</h1>
                             )}
                         </div>
 
                     </form>
-                    <div className='w-full h-[100px] flex justify-around items-center'>
+                    <div className='w-full h-[30%] mt-3 flex justify-around items-center'>
                         <div className='w-auto h-full flex items-center relative'>
                             <label className='text-xl text-zinc-700 mr-1 font-bold' htmlFor='score'>Final Score:</label>
                             <select onChange={ scoreInput } id='score' className='rounded-md text-xl text-zinc-700 w-min font-bold'>
@@ -166,12 +166,12 @@ export default function PopUp({ movie, movieId }) {
                                 </div>
                         </div>
                                 {errMessage3 !== '' && (
-                                <h1 className='text-red-600 absolute text-lg z-10 left-10 bottom-[50px]'>{errMessage3}</h1>
+                                <h1 className='text-red-600 absolute md:text-lg text-sm z-10 left-4 md:left-4 bottom-[95px] md:bottom-[115px]'>{errMessage3}</h1>
                             )}
                     <button
                     type='button'
                     onClick={submitFunction}
-                    className='w-[200px] h-[70px] rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'
+                    className='w-auto h-[50px] md:w-[150px] md:h-[50px] rounded-lg border-2 border-sky-600 hover:bg-sky-400 bg-sky-600 font-bold text-neutral-50'
                     >
                         SUBMIT REVIEW
                     </button>
