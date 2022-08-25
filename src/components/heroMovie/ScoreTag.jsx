@@ -16,7 +16,7 @@ export default function ScoreTag({ score }) {
   }, []);
 
   return (
-    <div className='flex flex-col w-[80px] items-center'>
+    <div className='flex flex-col w-[80px] items-center mr-6 md:mr-0'>
       <div className='flex flex-col items-center text-white'>
         <h1 className='font-bold'>TMDB </h1>
         <h1 className='-mt-2'>user score</h1>

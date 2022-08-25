@@ -12,6 +12,7 @@ import ReviewSection from '../components/ReviewSection';
 import PopUp from '../components/common/PopUp';
 import myContext from '../context/MyContext';
 import RecomendationMovie from '../components/RecomendationMovie';
+import HeroSection from '../components/heroMovie/HeroSection';
 
 
 export default function MoviePage() {
@@ -102,10 +103,14 @@ export default function MoviePage() {
                                 </div>
                             </div>
                         </div>
+                    
                         <div className='w-full h-[550px] opacity-60 absolute bg-sky-800' />
                         <div className='w-full h-[50%] absolute mt-[275px] bg-gradient-to-b from-transparent to-black' />
                         <img className='object-cover h-full w-full' src={`https://image.tmdb.org/t/p/original/${movieData[0].backdrop_path}`} alt="Movie poster not found" />
                     </div> */}
+                    <div className='w-full h-auto bg-slate-200'>
+                        <HeroSection movieData={movieData} director={director} date={date} genres={genres} />
+                    </div>
                     {/* MAIN CAST SECTION */}
                     <div className='w-full h-auto bg-slate-200'>
                         <MainCastSection actorInfo={movieData[1]}/>

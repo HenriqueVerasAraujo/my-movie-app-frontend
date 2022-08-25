@@ -120,9 +120,9 @@ export default function Navbar() {
   return (
     <div className='flex fixed w-full h-[75px] justify-center items-center py-3 md:p-3 bg-sky-800 z-20 shadow-[5px_5px_10px_0px_rgba(0,0,0,0.3)]'>
       <div className='md:flex w-full h-full md:px-10 relative items-center justify-center md:justify-between bg'>
-        <div onClick={ () => navigate('/') } className='flex items-center justify-center md:justify-end w-full md:w-[20%] h-full text-amber-50 hover:text-yellow-400'>
-          <FilmIcon className='w-10 h-10 md:w-10 md:h-10 mr-1' />
-          <h1  className='text-3xl md:text-4xl font-bold cursor-pointer'>Watchables</h1>
+        <div className='flex items-center justify-center md:justify-end md:w-[20%] h-full text-amber-50  hover:text-yellow-400'>
+          <FilmIcon onClick={ () => navigate('/') } className='w-10 h-10 md:w-10 md:h-10 mr-1' />
+          <h1 onClick={ () => navigate('/') } className='text-3xl md:text-4xl font-bold cursor-pointer'>Watchables</h1>
         </div>
         {/* HAMBURGER BUTTON */}
         <div className='md:hidden absolute top-2 left-5'>
