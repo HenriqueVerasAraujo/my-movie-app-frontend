@@ -63,7 +63,7 @@ export default function MoviePage() {
         {popUp && (
             <PopUp movie={movieData[0]} movieId={id}/>
         )}
-        <div className='w-full h-auto bg-black flex flex-col absolute top-[75px] z-0'>
+        <div className='w-full h-auto bg-slate-200 flex flex-col absolute top-[75px] z-0'>
          {render && (
              <div>
                  {/* HERO SECTION */}
@@ -111,13 +111,13 @@ export default function MoviePage() {
                         <MainCastSection actorInfo={movieData[1]}/>
                     </div>
                     {/* REVIEWS AREA */}
-                    {/* <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                         <ReviewSection movieId={id} movieName={movieData[0].title} />
-                    </div> */}
+                    </div>
                      {/* RECOMENDATIONS AREA */}
-                    {/* <div className='w-full h-auto bg-slate-200 flex justify-center'>
+                    <div className='w-full h-auto bg-slate-200'>
                       <RecomendationMovie info={movieData[2].results} />                  
-                    </div> */}
+                    </div>
              </div>
         )}
         </div>
