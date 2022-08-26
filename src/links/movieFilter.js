@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-// export const urlApi = 'https://watchables-app.herokuapp.com';
-export  const urlApi = 'http://localhost:3001';
+export const urlApi = 'https://watchables-app.herokuapp.com';
+// export  const urlApi = 'http://localhost:3001';
 
 const apiKey = process.env.REACT_APP_KEY
 export const defaultSearchMovie = 'https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&language=en-US&api_key=c2271adbcffead532490cc4d5ccb496a&query=batman';
